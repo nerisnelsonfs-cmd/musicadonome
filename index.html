@@ -1,0 +1,1215 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Música do Nome — qual é a música do seu nome?</title>
+<meta name="description" content="Cada letra do seu nome vira uma nota. Faça a sua sozinho, em dupla ou com a banda da família, veja quanto vocês combinam e baixe o vídeo.">
+<meta name="theme-color" content="#140b2b">
+<link rel="canonical" href="https://nerisnelsonfs-cmd.github.io/musicadonome/">
+<link rel="icon" href="icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icone-180.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Música do Nome">
+<meta property="og:title" content="Qual é a música do seu nome?">
+<meta property="og:description" content="Cada letra do seu nome vira uma nota. Faça a sua sozinho, em dupla ou com a banda da família, veja quanto vocês combinam e baixe o vídeo.">
+<meta property="og:url" content="https://nerisnelsonfs-cmd.github.io/musicadonome/">
+<meta property="og:image" content="https://nerisnelsonfs-cmd.github.io/musicadonome/capa.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Música do Nome: cada letra do seu nome vira uma nota.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fontes/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Letras guardadas no próprio site (nada de Google Fonts): carrega rápido e não entrega o visitante a terceiros. Licença OFL em fontes/. */
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;src:url(fontes/bricolage-grotesque.woff2) format("woff2-variations"),url(fontes/bricolage-grotesque.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-style:normal;font-display:swap;font-weight:400;src:url(fontes/figtree-400.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-style:normal;font-display:swap;font-weight:500;src:url(fontes/figtree-500.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-style:normal;font-display:swap;font-weight:700;src:url(fontes/figtree-700.woff2) format("woff2")}
+body{margin:0}
+</style>
+</head>
+<body>
+<style>
+/* redesenho: teclado de piano (22/10/2026). Papel branco, tinta preta, faixa de teclas,
+   cores vivas so em blocos chapados (cada pessoa tem a sua). Sem brilho, sem degrade. No celular, empilha. */
+:root{
+  --papel:#ffffff;
+  --tinta:#111111;
+  --suave:#555555;      /* 7,4:1 no branco */
+  --fraca:#e4e4e4;
+  --amarelo:#ffc629;    /* tinta por cima: 12:1 */
+  --rosa:#ff4f9a;
+  --rosa-txt:#c8005a;   /* rosa para TEXTO no branco: 5,8:1 */
+  --ciano:#22c3d6;
+  --verde:#62c94b;
+  --foco:#1f5bff;
+  --display:"Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --corpo:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--papel);color:var(--tinta)}
+body{font-family:var(--corpo);font-size:17px;line-height:1.5;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:20px 48px}
+.wrap{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:40px;align-items:start}
+@media (max-width:820px){.wrap{grid-template-columns:minmax(0,1fr);gap:28px}}
+header{grid-column:1/-1;display:flex;flex-direction:column;gap:10px}
+.teclas{height:44px;border:2px solid var(--tinta);border-radius:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='44'%3E%3Crect width='140' height='44' fill='%23fff'/%3E%3Cpath d='M20 0V44M40 0V44M60 0V44M80 0V44M100 0V44M120 0V44M140 0V44' stroke='%23111' stroke-width='2'/%3E%3Cg fill='%23111'%3E%3Crect x='13' width='14' height='27' rx='2'/%3E%3Crect x='33' width='14' height='27' rx='2'/%3E%3Crect x='73' width='14' height='27' rx='2'/%3E%3Crect x='93' width='14' height='27' rx='2'/%3E%3Crect x='113' width='14' height='27' rx='2'/%3E%3C/g%3E%3C/svg%3E") repeat-x left top/140px 44px;margin-bottom:6px}
+.marca{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(36px,6vw,60px);line-height:1.04;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1 em{font-style:normal;background:var(--amarelo);padding:0 .14em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.sub{color:var(--suave);margin:0;max-width:58ch}
+form{display:flex;flex-direction:column;gap:18px;min-width:0}
+label{font-weight:700;font-size:15px;display:block;margin-bottom:6px}
+.dica{font-weight:400;color:var(--suave)}
+input,select{width:100%;font:inherit;font-size:19px;color:var(--tinta);background:var(--papel);
+  border:2px solid var(--tinta);border-radius:10px;padding:10px 14px;min-height:50px}
+input::placeholder{color:#767676}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
+#nome{font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:.01em}
+.linha2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:12px}
+.ideias{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:15px;color:var(--tinta);background:var(--papel);border:2px solid var(--tinta);
+  border-radius:8px;padding:8px 14px;min-height:44px;cursor:pointer}
+.chip:hover{background:#f3f3f3}
+.chip[aria-pressed="true"]{background:var(--tinta);color:var(--papel);font-weight:700}
+.modos-tit{font-weight:700;font-size:15px;margin:0 0 8px}
+.dupla{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12px}
+@media (max-width:420px){.dupla{grid-template-columns:minmax(0,1fr)}}
+.botoes{display:flex;flex-wrap:wrap;gap:14px}
+.btn{font:inherit;font-weight:700;font-size:17px;color:var(--tinta);background:var(--papel);border:2px solid var(--tinta);
+  border-radius:10px;padding:10px 20px;min-height:48px;cursor:pointer;box-shadow:3px 3px 0 var(--tinta);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--tinta)}
+.btn-play{background:var(--amarelo)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.feito{background:var(--verde)}   /* botao ja usado: muda de cor e de texto */
+.aviso{min-height:1.5em;margin:0;color:var(--suave);font-size:15px}
+.aviso.ok{color:var(--tinta);font-weight:700}
+.regras{border-top:2px solid var(--tinta);padding-top:16px;color:var(--suave);font-size:15px}
+.regras h2{font-family:var(--display);font-size:18px;color:var(--tinta);margin:0 0 8px}
+.regras ul{margin:0;padding-left:20px;display:grid;gap:4px}
+.palco{position:sticky;top:calc(16px + env(safe-area-inset-top, 0px));display:flex;flex-direction:column;gap:12px;align-items:center}
+@media (max-width:820px){header{order:-2}.palco{position:static;order:-1}.palco canvas{max-width:280px}}
+canvas{width:100%;max-width:400px;aspect-ratio:9/16;border-radius:16px;background:var(--papel);
+  box-shadow:0 0 0 2px var(--tinta),8px 8px 0 2px var(--tinta);display:block}
+.legenda{font-size:15px;color:var(--suave);text-align:center;margin:0;max-width:400px}
+.legenda.ok{color:var(--tinta);font-weight:700}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}.btn{transition:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="teclas" aria-hidden="true"></div>
+    <span class="marca">Música do Nome</span>
+    <h1>Qual é a música do <em>seu nome?</em></h1>
+    <p class="sub">Cada letra vira uma nota. Faça a sua sozinho ou junto com quem você ama, e descubra quanto os nomes de vocês combinam. Depois é só baixar o vídeo e mandar.</p>
+  </header>
+
+  <form id="form" autocomplete="off" novalidate>
+    <div>
+      <p class="modos-tit" id="modosTit">Para quem é a música?</p>
+      <div class="ideias" role="group" aria-labelledby="modosTit">
+        <button type="button" class="chip" data-modo="so" aria-pressed="false">Só eu</button>
+        <button type="button" class="chip" data-modo="amor" aria-pressed="true">Eu e meu amor</button>
+        <button type="button" class="chip" data-modo="mae" aria-pressed="false">Eu e minha mãe</button>
+        <button type="button" class="chip" data-modo="pai" aria-pressed="false">Eu e meu pai</button>
+        <button type="button" class="chip" data-modo="avos" aria-pressed="false">Eu e vó ou vô</button>
+        <button type="button" class="chip" data-modo="amigo" aria-pressed="false">Eu e um amigo</button>
+        <button type="button" class="chip" data-modo="familia" aria-pressed="false">A banda da família</button>
+      </div>
+    </div>
+    <div class="dupla">
+      <div>
+        <label for="nome" id="lblNome">Seu nome</label>
+        <input id="nome" autocapitalize="words" spellcheck="false" maxlength="16" value="Ana" placeholder="Ex.: Ana" aria-describedby="aviso">
+      </div>
+      <div>
+        <label for="instr">Seu instrumento</label>
+        <select id="instr"><option value="violao" selected>Violão</option><option value="piano">Piano</option><option value="sax">Saxofone</option><option value="gaita">Gaita</option><option value="harpa">Harpa</option></select>
+      </div>
+    </div>
+    <div class="dupla" id="blocoDois">
+      <div>
+        <label for="nome2" id="lblNome2">Nome do seu amor</label>
+        <input id="nome2" autocapitalize="words" spellcheck="false" maxlength="16" value="Léo" placeholder="Ex.: Léo">
+      </div>
+      <div>
+        <label for="instr2" id="lblInstr2">Instrumento dele(a)</label>
+        <select id="instr2"><option value="violao">Violão</option><option value="piano">Piano</option><option value="sax" selected>Saxofone</option><option value="gaita">Gaita</option><option value="harpa">Harpa</option></select>
+      </div>
+    </div>
+    <div id="blocoFamilia" hidden style="display:grid;gap:12px">
+      <div class="dupla">
+        <div><label for="nomeF2">Pessoa 2</label>
+        <input id="nomeF2" autocapitalize="words" spellcheck="false" maxlength="14" value="Rosa" placeholder="Ex.: Lúcia"></div>
+        <div><label for="instrF2">Instrumento</label>
+        <select id="instrF2"><option value="violao">Violão</option><option value="piano">Piano</option><option value="sax">Saxofone</option><option value="gaita">Gaita</option><option value="harpa" selected>Harpa</option></select></div>
+      </div>
+      <div class="dupla">
+        <div><label for="nomeF3">Pessoa 3</label>
+        <input id="nomeF3" autocapitalize="words" spellcheck="false" maxlength="14" value="José" placeholder="Ex.: Lúcia"></div>
+        <div><label for="instrF3">Instrumento</label>
+        <select id="instrF3"><option value="violao">Violão</option><option value="piano">Piano</option><option value="sax" selected>Saxofone</option><option value="gaita">Gaita</option><option value="harpa">Harpa</option></select></div>
+      </div>
+      <div class="dupla">
+        <div><label for="nomeF4">Pessoa 4 <span class="dica">(opcional)</span></label>
+        <input id="nomeF4" autocapitalize="words" spellcheck="false" maxlength="14" value="" placeholder="Ex.: Pedro"></div>
+        <div><label for="instrF4">Instrumento</label>
+        <select id="instrF4"><option value="violao">Violão</option><option value="piano" selected>Piano</option><option value="sax">Saxofone</option><option value="gaita">Gaita</option><option value="harpa">Harpa</option></select></div>
+      </div>
+      <div class="dupla">
+        <div><label for="nomeF5">Pessoa 5 <span class="dica">(opcional)</span></label>
+        <input id="nomeF5" autocapitalize="words" spellcheck="false" maxlength="14" value="" placeholder="Ex.: Lúcia"></div>
+        <div><label for="instrF5">Instrumento</label>
+        <select id="instrF5"><option value="violao">Violão</option><option value="piano">Piano</option><option value="sax">Saxofone</option><option value="gaita" selected>Gaita</option><option value="harpa">Harpa</option></select></div>
+      </div>
+      <p class="aviso" style="margin:0">De 3 a 5 pessoas. Cada um toca o próprio nome, e no final a banda inteira toca junta.</p>
+    </div>
+    <p class="aviso" id="dicaInstr" style="margin:0">Dica: troque os instrumentos e veja se vocês combinam mais.</p>
+    <p class="aviso" id="dicaData" style="margin:0">Uma data de vocês: aniversário, namoro, o dia em que se conheceram…</p>
+    <div class="linha2">
+      <div><label for="dia">Dia</label><select id="dia"></select></div>
+      <div><label for="mes">Mês</label><select id="mes"></select></div>
+    </div>
+    <div>
+      <label for="frase">Uma frase no vídeo <span class="dica">(opcional)</span></label>
+      <input id="frase" maxlength="34" placeholder="Ex.: Feliz aniversário, mãe!">
+    </div>
+    <div class="botoes">
+      <button type="submit" class="btn btn-play" id="tocar">▶ Tocar a música</button>
+      <button type="button" class="btn btn-rec" id="gravar">Baixar o vídeo</button>
+      <button type="button" class="btn btn-sec" id="mandar" hidden>Mandar o vídeo</button>
+    </div>
+    <p class="aviso" id="aviso" role="status" aria-live="polite">Exemplo pronto: Ana e Léo. Troque pelos nomes de vocês.</p>
+    <div class="regras">
+      <h2>Como a música nasce</h2>
+      <ul>
+        <li>O mês escolhe o tom. O dia escolhe o ritmo.</li>
+        <li>O dia e o mês juntos escolhem os acordes.</li>
+        <li>Cada letra vira uma nota; as vogais tocam mais longas.</li>
+        <li>Em dupla, cada um toca o seu nome e no fim os dois tocam juntos.</li>
+        <li>Na banda da família, de 3 a 5 pessoas tocam uma de cada vez, num ritmo mais rápido (de 96 a 132 batidas, também pelo dia). No fim, todas tocam o próprio nome ao mesmo tempo e terminam num acorde só.</li>
+        <li>A sintonia da família é a média de todas as duplas, e pode dar baixa ou alta: cada família tem o seu som.</li>
+        <li>A porcentagem de "combinam" é uma brincadeira: ela mede quantas notas dos dois nomes soam bem juntas e soma um bônus pela dupla de instrumentos (violão e sax, da bossa nova, vale mais).</li>
+        <li>Mesmo nome e mesma data dão sempre a mesma música.</li>
+        <li>Não pedimos o ano: data completa em público ajuda golpista.</li>
+        <li>Os nomes que você digita não saem do seu aparelho: a música e o vídeo são feitos aqui mesmo, no seu celular ou computador.</li>
+        <li>O som do violão, do piano, do saxofone, da gaita e da harpa vem de gravações de uso livre (GeneralUser GS, de S. Christian Collins). A melodia e os acordes são feitos aqui, pelo seu nome.</li>
+      </ul>
+    </div>
+  </form>
+
+  <div class="palco">
+    <canvas id="tela" width="1080" height="1920" aria-label="Animação da música do nome"></canvas>
+    <p class="legenda" id="legenda">Vídeo em pé, no tamanho do TikTok e do Reels.</p>
+  </div>
+</div>
+
+<script>
+(() => {
+  const W = 1080, H = 1920;
+  const NOMES = ["dó","réb","ré","mib","mi","fá","solb","sol","láb","lá","sib","si"];
+  const MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  const MAIOR = [0,2,4,5,7,9,11];
+  const VOGAIS = new Set(["A","E","I","O","U"]);
+  const CORES_BANDA = ["#ffc629", "#ff4f9a", "#22c3d6", "#62c94b", "#ff8a2a"];   // blocos chapados, tinta preta por cima
+  // redesenho: "branco" agora e a TINTA (texto forte) e "lilas" o cinza; sol/rosa sao cores de bloco; rosaTxt e rosa para texto
+  const COR = {sol:"#ffc629", rosa:"#ff4f9a", rosaTxt:"#c8005a", ciano:"#22c3d6", branco:"#111111", lilas:"#6b6b6b", papel:"#ffffff", tecla:"#f5f3ff", preta:"#181030"};
+  const FD = '"Bricolage Grotesque", "Arial Black", sans-serif';
+  const FC = 'Figtree, system-ui, sans-serif';
+
+  const $ = id => document.getElementById(id);
+  const cv = $("tela"), g = cv.getContext("2d");
+  const LEGENDA = "Vídeo em pé, no tamanho do TikTok e do Reels.";
+  // o recado tambem aparece embaixo do video: no celular, enquanto toca, o botao fica fora da tela
+  const aviso = (t, ok) => { $("aviso").textContent = t; $("aviso").className = "aviso" + (ok ? " ok" : "");
+    $("legenda").textContent = ok ? t : LEGENDA; $("legenda").className = "legenda" + (ok ? " ok" : ""); };
+
+  for (let d = 1; d <= 31; d++) $("dia").add(new Option(String(d).padStart(2,"0"), d));
+  MESES.forEach((m, i) => $("mes").add(new Option(m, i + 1)));
+  $("dia").value = 15; $("mes").value = 8;
+
+  const semAcento = c => c.normalize("NFD").replace(/[̀-ͯ]/g, "");
+
+  // ---------- a música: nome + dia + mês -> notas ----------
+  function compor(nomeTxt, dia, mes, banda = false) {
+    const exib = nomeTxt.trim().replace(/\s+/g, " ").toUpperCase();
+    const chars = [...exib];
+    const letras = [];          // índices em chars que tocam
+    chars.forEach((c, i) => { const s = semAcento(c); if (s >= "A" && s <= "Z") letras.push(i); });
+    let raiz = 60 + (mes - 1); if (raiz > 66) raiz -= 12;
+    const bpm = 70 + dia * 2, beat = 60 / bpm;
+    const progs = [[0,4,5,3],[0,5,3,4],[5,3,0,4],[0,3,5,4]];
+    const prog = progs[(dia + mes) % 4];
+
+    let mel = [], ant = raiz + 12;
+    const umaVolta = () => letras.forEach(ci => {
+      const s = semAcento(chars[ci]); const i = s.charCodeAt(0) - 65, grau = i % 7;
+      let cands = [0,1,2].map(o => raiz + 12*o + MAIOR[grau]);
+      const dentro = cands.filter(m => m >= raiz + 5 && m <= raiz + 24); if (dentro.length) cands = dentro;
+      const m = cands.reduce((a, b) => Math.abs(b - ant) < Math.abs(a - ant) ? b : a);
+      // na banda cada letra dura a metade (a vogal continua o dobro da consoante): o vídeo fica curto
+      mel.push({m, d: (VOGAIS.has(s) ? 2 : 1) / (banda ? 2 : 1), ci}); ant = m;
+    });
+    umaVolta();
+    if (!banda) while (mel.reduce((s, x) => s + x.d, 0) < 8) umaVolta();      // nome curto: repete (na banda, não)
+    const tot = mel.reduce((s, x) => s + x.d, 0);
+    mel[mel.length - 1].d += banda ? (2 - tot % 2) % 2 : (4 - tot % 4) % 4;   // banda: fecha em meio compasso
+    const bf = tot + (4 - tot % 4) % 4;
+
+    const transp = (m, k) => { const gr = MAIOR.indexOf(((m - raiz) % 12 + 12) % 12); const g2 = gr + k;
+      return m - MAIOR[gr] + MAIOR[g2 % 7] + 12 * Math.floor(g2 / 7); };
+    const frases = bf > 16 ? [[0,false],[0,true]] : [[0,false],[2,false],[0,true]];
+    const ev = []; let t = 4 * beat;
+    frases.forEach(([k, fim]) => mel.forEach((n, idx) => {
+      let m = k ? transp(n.m, k) : n.m;
+      if (fim && idx === mel.length - 1) m = [raiz + 12, raiz + 24].reduce((a, b) => Math.abs(b - m) < Math.abs(a - m) ? b : a);
+      ev.push({t, dur: n.d * beat, m, ci: n.ci, nota: NOMES[m % 12], ultima: fim && idx === mel.length - 1});
+      t += n.d * beat;
+    }));
+    const compassos = 1 + frases.length * bf / 4;
+    const fimMusica = t;
+    ev.forEach(e => e.v = 0);
+    return {exib, chars, raiz, bpm, beat, prog, ev, compassos, fimMusica, dur: fimMusica + 4.2,
+            tom: NOMES[raiz % 12], dia, mes, mel, bf, duo: false, exibs: [exib], charsV: [chars]};
+  }
+  // ---------- banda da família: cada um toca o próprio nome, no fim um acorde de todos ----------
+  // fração (0 a 1) das notas de dois nomes que soam bem juntas
+  function parFracao(a, b) { const L = Math.max(a.length, b.length); let boas = 0;
+    for (let i = 0; i < L; i++) { const d = Math.abs(a[i % a.length].m - b[i % b.length].m) % 12; if (CONSON.has(d)) boas++; }
+    return boas / L; }
+  const BANDA_JUNTOS = 8;                 // tempos em que a banda inteira toca junto no fim
+  const OITAVA_BANDA = [0, -12, 0, -12, 0]; // vozes alternadas uma oitava abaixo, pra não embolar
+  function comporFamilia(nomes, dia, mes) {
+    // na banda o ritmo é mais rápido (96 a 132 batidas, ainda escolhido pelo dia) e o nome curto não repete: vídeo curto
+    const bpm = 96 + Math.round((dia - 1) * 36 / 30), beat = 60 / bpm;
+    const P = nomes.map(n => compor(n, dia, mes, true)), {raiz} = P[0], ev = []; let t = 4 * beat;
+    P.forEach((A, v) => A.mel.forEach(n => { ev.push({t, dur: n.d * beat, m: n.m, ci: n.ci, v, nota: NOMES[n.m % 12]}); t += n.d * beat; }));
+    const sobra = (4 - Math.round((t / beat - 4) * 2) / 2 % 4) % 4;      // o último segura a nota até fechar o compasso
+    ev[ev.length - 1].dur += sobra * beat; t += sobra * beat;
+    // todos juntos: cada um toca o próprio nome ao mesmo tempo (quem acaba, recomeça)
+    const tJ = t;
+    P.forEach((A, v) => { let tt = 0, i = 0;
+      while (tt < BANDA_JUNTOS) { const n = A.mel[i % A.mel.length], d = Math.min(n.d, BANDA_JUNTOS - tt), m = n.m + OITAVA_BANDA[v];
+        ev.push({t: tJ + tt * beat, dur: d * beat, m, ci: n.ci, v, nota: NOMES[m % 12], junto: true}); tt += d; i++; } });
+    const fimT = tJ + BANDA_JUNTOS * beat, acorde = [raiz + 12, raiz + 16, raiz + 19, raiz + 24, raiz + 7];
+    P.forEach((A, v) => ev.push({t: fimT + v * 0.12, dur: 4 * beat - v * 0.12, m: acorde[v], ci: -1, v, nota: NOMES[acorde[v] % 12], ultima: true, junto: true}));
+    t = fimT + 4 * beat;
+    ev.sort((a, b) => a.t - b.t || a.v - b.v);
+    const pares = []; for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) pares.push({i, j, fr: parFracao(P[i].mel, P[j].mel)});
+    return {exib: P.map(A => A.exib).join(" "), exibs: P.map(A => A.exib), charsV: P.map(A => A.chars), chars: P[0].chars,
+      raiz, bpm, beat, prog: P[0].prog, ev, compassos: Math.round(t / (4 * beat)), fimMusica: fimT + 2 * beat,
+      dur: fimT + 2 * beat + 7, tom: P[0].tom, dia, mes, duo: false, familia: true, juntoIni: tJ, pares};
+  }
+  // sintonia da família: a média das duplas, esticada pra variar de verdade (medido em 3.000 famílias:
+  // a média fica entre 0,40 e 0,675 em 90% delas, e isso vira 45% a 95%); o bônus médio dos instrumentos soma no fim
+  function sintoniaFamilia(pares, instrs) {
+    pares.forEach(p => { p.bonus = bonusInstr(instrs[p.i], instrs[p.j]).pts; p.total = Math.min(99, 40 + Math.round(59 * p.fr) + p.bonus); });
+    const mf = pares.reduce((s, p) => s + p.fr, 0) / pares.length, mb = pares.reduce((s, p) => s + p.bonus, 0) / pares.length;
+    const base = 45 + (mf - 0.40) / (0.675 - 0.40) * 50;
+    return Math.max(35, Math.min(99, Math.round(base + mb)));
+  }
+  // ---------- dupla: cada um toca o seu nome, depois os dois juntos ----------
+  const CONSON = new Set([0, 3, 4, 7, 8, 9]);
+  function comporDuo(n1, n2, dia, mes) {
+    const A = compor(n1, dia, mes), B = compor(n2, dia, mes), {raiz, beat} = A;
+    const ev = []; let t = 4 * beat;
+    const frase = (mel, v) => { let tot = 0; mel.forEach((n, i) => {
+      ev.push({t, dur: n.d * beat, m: n.m, ci: n.ci, v, nota: NOMES[n.m % 12]}); t += n.d * beat; tot += n.d; }); };
+    frase(A.mel, 0); frase(B.mel, 1);
+    // juntos: as duas melodias ao mesmo tempo (a menor repete), no máximo 16 tempos
+    const juntos = Math.min(16, Math.max(A.bf, B.bf)), tJ = t;
+    [[A.mel, 0], [B.mel, 1]].forEach(([mel, v]) => { let tt = 0, i = 0;
+      while (tt < juntos) { const n = mel[i % mel.length], d = Math.min(n.d, juntos - tt);
+        const off = v === 1 ? -12 : 0;
+        ev.push({t: tJ + tt * beat, dur: d * beat, m: n.m + off, ci: n.ci, v, nota: NOMES[(n.m + off) % 12], junto: true}); tt += d; i++; } });
+    t = tJ + juntos * beat;
+    const fimT = t;
+    ev.push({t, dur: 4 * beat, m: raiz + 12, ci: -1, v: 0, nota: NOMES[raiz % 12], ultima: true, junto: true});
+    ev.push({t, dur: 4 * beat, m: raiz, ci: -1, v: 1, nota: NOMES[raiz % 12], ultima: true, junto: true});
+    t += 4 * beat;
+    ev.sort((a, b) => a.t - b.t || a.v - b.v);
+    // quanto combinam: notas dos dois nomes que soam bem juntas
+    const L = Math.max(A.mel.length, B.mel.length); let boas = 0;
+    for (let i = 0; i < L; i++) { const d = Math.abs(A.mel[i % A.mel.length].m - B.mel[i % B.mel.length].m) % 12; if (CONSON.has(d)) boas++; }
+    const score = 58 + Math.round(41 * boas / L);
+    return {exib: A.exib + " & " + B.exib, exibs: [A.exib, B.exib], charsV: [A.chars, B.chars], chars: A.chars,
+      raiz, bpm: A.bpm, beat, prog: A.prog, ev, compassos: Math.round(t / (4 * beat)), fimMusica: fimT + 2 * beat,
+      dur: fimT + 2 * beat + 6.5, tom: A.tom, dia, mes, duo: true, scoreNomes: score, juntoIni: tJ};
+  }
+
+  // ---------- o som (Web Audio) ----------
+  let ac = null, mestre = null, gravDest = null, corpo = null, amostras = null, pianoSaida = null, saxSaida = null, gaitaSaida = null, harpaSaida = null;
+  // ---------- instrumentos gravados (violão de nylon e piano de cauda, GeneralUser GS) ----------
+  function banco(url) {
+    const b = {pcm: null, buf: null, p: null};
+    b.iniciar = () => b.p || (b.p = fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(j => {
+      const am = j.amostras.map(a => { const bin = atob(a.pcm), n = bin.length >> 1, f = new Float32Array(n);
+        for (let i = 0; i < n; i++) { let v = bin.charCodeAt(2 * i) | (bin.charCodeAt(2 * i + 1) << 8); if (v & 0x8000) v -= 0x10000; f[i] = v / 32768; }
+        return {sr: a.sr, f}; });
+      b.pcm = {am, zonas: j.zonas};
+    }).catch(() => { b.p = null; }));
+    return b;
+  }
+  const bancoViolao = banco("violao-nylon.json"), bancoPiano = banco("piano-cauda.json"), bancoSax = banco("sax-alto.json"), bancoGaita = banco("gaita.json"), bancoHarpa = banco("harpa.json");
+  bancoViolao.iniciar();
+  function preparar(b) {
+    if (b.buf || !b.pcm || !ac) return b.buf;
+    const bufs = b.pcm.am.map(a => { const x = ac.createBuffer(1, a.f.length, a.sr); x.copyToChannel(a.f, 0); return x; });
+    b.buf = b.pcm.zonas.map(z => ({...z, buf: bufs[z.a]}));
+    return b.buf;
+  }
+  function tocarAmostra(zs, m, t, vol, soltar, destino) {
+    let z = zs.find(q => m >= q.lo && m <= q.hi);
+    if (!z) z = zs.reduce((a, q) => Math.abs((q.lo + q.hi) / 2 - m) < Math.abs((a.lo + a.hi) / 2 - m) ? q : a);
+    const src = ac.createBufferSource(); src.buffer = z.buf;
+    src.playbackRate.value = Math.pow(2, ((m - z.root) * 100 + z.corr) / 1200);
+    src.loop = true; src.loopStart = z.ls / z.buf.sampleRate; src.loopEnd = z.le / z.buf.sampleRate;
+    const ga = ac.createGain(), v = vol * Math.pow(10, -z.atenDb / 20), atk = Math.max(z.atk, 0.002), fimHold = t + atk + z.hold;
+    ga.gain.setValueAtTime(0, t); ga.gain.linearRampToValueAtTime(v, t + atk);
+    let fim = fimHold + 8;
+    if (soltar != null && soltar <= fimHold) { ga.gain.setTargetAtTime(0, Math.max(soltar, t + atk), z.release / 6); fim = soltar + z.release * 1.5; }
+    else { ga.gain.setTargetAtTime(v * Math.pow(10, -(z.sus == null ? 100 : z.sus) / 20), fimHold, z.decay / 11.5);
+      if (soltar != null) { ga.gain.setTargetAtTime(0, soltar, z.release / 6); fim = soltar + z.release * 1.5; } }
+    let saida = ga;
+    if (z.pan && ac.createStereoPanner) { const pn = ac.createStereoPanner(); pn.pan.value = z.pan; ga.connect(pn); saida = pn; }
+    if (z.vib) { // vibrato do sopro: entra devagar depois do começo da nota
+      const lfo = ac.createOscillator(), lg = ac.createGain(); lfo.frequency.value = z.vib.freq * 1.05;
+      lg.gain.setValueAtTime(0, t); lg.gain.setValueAtTime(0, t + z.vib.delay * 0.5);
+      lg.gain.linearRampToValueAtTime(z.vib.cents * 1.6, t + z.vib.delay + 0.4);
+      lfo.connect(lg); lg.connect(src.detune); lfo.start(t); lfo.stop(Math.max(fim, t + 0.05)); nos.push(lfo);
+    }
+    src.connect(ga); saida.connect(destino); src.start(t); src.stop(Math.max(fim, t + 0.05)); nos.push(src);
+  }
+  function audio() {
+    if (ac) return ac;
+    ac = new (window.AudioContext || window.webkitAudioContext)();
+    const comp = ac.createDynamicsCompressor(); comp.threshold.value = -12; comp.ratio.value = 12; comp.knee.value = 6; comp.attack.value = 0.003; comp.release.value = 0.2;
+    mestre = ac.createGain(); mestre.gain.value = 0.9;
+    const seco = ac.createGain(), molhado = ac.createGain(); molhado.gain.value = 0.28;
+    const rev = ac.createConvolver(); const len = ac.sampleRate * 2.2, ir = ac.createBuffer(2, len, ac.sampleRate);
+    for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random()*2-1) * Math.pow(1 - i/len, 3); }
+    rev.buffer = ir;
+    mestre.connect(seco); mestre.connect(rev); rev.connect(molhado);
+    seco.connect(comp); molhado.connect(comp); comp.connect(ac.destination);
+    gravDest = ac.createMediaStreamDestination(); comp.connect(gravDest);
+    // caixa do violão: grave encorpado e brilho macio
+    const b1 = ac.createBiquadFilter(); b1.type = "peaking"; b1.frequency.value = 110; b1.Q.value = 1.2; b1.gain.value = 5;
+    const b2 = ac.createBiquadFilter(); b2.type = "peaking"; b2.frequency.value = 240; b2.Q.value = 1; b2.gain.value = 2;
+    const b3 = ac.createBiquadFilter(); b3.type = "lowpass"; b3.frequency.value = 4800; b3.Q.value = 0.5;
+    corpo = ac.createGain(); corpo.gain.value = 1.6;
+    corpo.connect(b1); b1.connect(b2); b2.connect(b3); b3.connect(mestre);
+    amostras = ac.createGain(); amostras.gain.value = 1.4; amostras.connect(mestre);
+    const pf = ac.createBiquadFilter(); pf.type = "lowpass"; pf.frequency.value = 7000; pf.Q.value = 0.5;
+    pianoSaida = ac.createGain(); pianoSaida.gain.value = PIANO_G; pianoSaida.connect(pf); pf.connect(mestre);
+    saxSaida = ac.createGain(); saxSaida.gain.value = SAX_G; saxSaida.connect(mestre);
+    gaitaSaida = ac.createGain(); gaitaSaida.gain.value = GAITA_G; gaitaSaida.connect(mestre);
+    harpaSaida = ac.createGain(); harpaSaida.gain.value = HARPA_G; harpaSaida.connect(mestre);
+    return ac;
+  }
+  const hz = m => 440 * Math.pow(2, (m - 69) / 12);
+  const nos = [];
+  function osc(f, tipo, ganho, t0, t1) { const o = ac.createOscillator(); o.type = tipo; o.frequency.value = f; o.connect(ganho); o.start(t0); o.stop(t1); nos.push(o); }
+  function piano(m, t, dur, vol, fim) {
+    const ga = ac.createGain(); ga.gain.setValueAtTime(0, t); ga.gain.linearRampToValueAtTime(vol, t + 0.006);
+    ga.gain.setTargetAtTime(0, t + 0.006, 0.6 + dur * 0.4);
+    const corte = t + dur + (fim ? 2.6 : 0.08); ga.gain.setTargetAtTime(0, corte, 0.04); ga.connect(mestre);
+    for (let k = 1; k <= 4; k++) { const gk = ac.createGain(); gk.gain.value = 1 / Math.pow(k, 1.6); gk.connect(ga); osc(hz(m) * k, "sine", gk, t, corte + 0.4); }
+  }
+  function pad(m, t, dur, vol) {
+    const ga = ac.createGain(); ga.gain.setValueAtTime(0, t); ga.gain.linearRampToValueAtTime(vol, t + 0.4);
+    ga.gain.setValueAtTime(vol, Math.max(t + 0.4, t + dur - 0.4)); ga.gain.linearRampToValueAtTime(0, t + dur); ga.connect(mestre);
+    [[1, 1], [1.003, .5], [2, .3]].forEach(([r, v]) => { const gk = ac.createGain(); gk.gain.value = v; gk.connect(ga); osc(hz(m) * r, "sine", gk, t, t + dur + 0.05); });
+  }
+  function baixo(m, t, dur, vol) {
+    const ga = ac.createGain(); ga.gain.setValueAtTime(0, t); ga.gain.linearRampToValueAtTime(vol, t + 0.01);
+    ga.gain.setTargetAtTime(0, t + 0.01, 0.9); ga.gain.setTargetAtTime(0, t + dur, 0.04); ga.connect(mestre);
+    osc(hz(m), "sine", ga, t, t + dur + 0.3);
+    const g2 = ac.createGain(); g2.gain.value = 0.25; g2.connect(ga); osc(hz(m) * 2, "sine", g2, t, t + dur + 0.3);
+  }
+  const PIANO_G = 4.2;
+  const SAX_G = 0.5, GAITA_G = 0.8, HARPA_G = 1.25;
+  function agendarHarpaAcomp(mus, t0, H) {
+    const {raiz, beat, prog, compassos} = mus, hum = rnd(mus.exib.length * 71 + mus.dia + mus.mes);
+    for (let b = 0; b < compassos; b++) {
+      const ultimo = b === compassos - 1, gr = ultimo ? 0 : prog[b % 4], tb = t0 + b * 4 * beat;
+      const ac3 = [0, 2, 4].map(k => MAIOR[(gr + k) % 7] + 12 * Math.floor((gr + k) / 7));
+      const arp = [raiz - 12 + ac3[0], raiz - 12 + ac3[1], raiz - 12 + ac3[2], raiz + ac3[0], raiz + ac3[1], raiz + ac3[2], raiz + ac3[0] + 12, raiz + ac3[1]];
+      if (ultimo) { arp.slice(0, 7).forEach((m, i) => tocarAmostra(H, m, tb + i * 0.06, 0.32, null, harpaSaida)); continue; }
+      arp.forEach((m, i) => tocarAmostra(H, m, tb + i * beat / 2 + (hum() - 0.5) * 0.01, (i === 0 ? 0.36 : 0.24) * (0.9 + hum() * 0.2), tb + 4 * beat + 0.4, harpaSaida));
+    }
+  }
+  function agendarSax(mus, t0, S, P) {
+    if (P) agendarPianoReal(mus, t0, P, false, 0.75);
+    const hum = rnd(mus.exib.length * 53 + mus.dia * 3 + mus.mes);
+    mus.ev.forEach((e, i) => {
+      const forte = i === 0 || (e.t / mus.beat) % 4 < 0.01 ? 1.08 : 0.95;
+      tocarAmostra(S, e.m - 12, t0 + e.t + (hum() - 0.5) * 0.01, 0.7 * forte * (0.94 + hum() * 0.12),
+        e.ultima ? t0 + e.t + e.dur + 1.8 : t0 + e.t + e.dur - 0.02, saxSaida);
+    });
+  }
+  function agendarPianoReal(mus, t0, P, comMelodia = true, k = 1) {
+    const {raiz, beat, prog, compassos} = mus, hum = rnd(mus.exib.length * 97 + mus.dia * 5 + mus.mes);
+    const nota = (m, t, vol, solta) => tocarAmostra(P, m, t + (hum() - 0.5) * 0.006, vol * k * (0.92 + hum() * 0.16), solta, pianoSaida);
+    for (let b = 0; b < compassos; b++) {
+      const ultimo = b === compassos - 1, gr = ultimo ? 0 : prog[b % 4];
+      const notas = [0,2,4].map(k => raiz + MAIOR[(gr + k) % 7] + 12 * Math.floor((gr + k) / 7));
+      const t = t0 + b * 4 * beat;
+      const b1 = raiz - 12 + MAIOR[gr], b2 = raiz - 12 + MAIOR[(gr + 4) % 7];
+      if (ultimo) { nota(b1, t, 0.38, null); nota(b1 - 12, t, 0.22, null); notas.forEach((m, i) => nota(m, t + 0.02 * i, 0.22, null)); continue; }
+      nota(b1, t, 0.32, t + 2 * beat); nota(b2, t + 2 * beat, 0.26, t + 4 * beat);
+      notas.forEach((m, i) => nota(m, t + 0.015 * i, 0.16, t + 2 * beat - 0.03));
+      notas.forEach((m, i) => nota(m, t + 2 * beat + 0.015 * i, 0.12, t + 4 * beat - 0.03));
+      [1, 3].forEach((bt, k) => nota(notas[(k + 1) % 3] + 12, t + bt * beat, 0.1, t + (bt + 1) * beat));
+    }
+    if (comMelodia) mus.ev.forEach(e => nota(e.m, t0 + e.t, 0.85 / k, e.ultima ? null : t0 + e.t + e.dur + 0.15));
+  }
+  function agendar(mus, t0, comMelodia = true) {
+    const {raiz, beat, prog, compassos} = mus;
+    const P = preparar(bancoPiano); if (P) return agendarPianoReal(mus, t0, P, comMelodia);
+    for (let b = 0; b < compassos; b++) {
+      const gr = b === compassos - 1 ? 0 : prog[b % 4];
+      const notas = [0,2,4].map(k => raiz + MAIOR[(gr + k) % 7] + 12 * Math.floor((gr + k) / 7));
+      const t = t0 + b * 4 * beat, dur = 4 * beat + (b === compassos - 1 ? 2.6 : 0.05);
+      notas.forEach(m => pad(m, t, dur, 0.045));
+      baixo(raiz - 12 + MAIOR[gr], t, 2 * beat, 0.2);
+      baixo(raiz - 12 + MAIOR[(gr + 4) % 7], t + 2 * beat, 2 * beat, 0.14);
+      [1, 3].forEach((bt, k) => piano(notas[(k + 1) % 3] + 12, t + bt * beat, beat, 0.035));
+    }
+    if (comMelodia) mus.ev.forEach(e => piano(e.m, t0 + e.t, e.dur, 0.26, e.ultima));
+  }
+  // ---------- violão: corda dedilhada calculada (Karplus-Strong) ----------
+  const cordas = new Map();
+  function corda(m, T) {
+    const chave = m + "|" + T; if (cordas.has(chave)) return cordas.get(chave);
+    const sr = ac.sampleRate, f = hz(m), len = Math.floor(sr * (T + 0.3));
+    const buf = ac.createBuffer(1, len, sr), y = buf.getChannelData(0);
+    const P = sr / f, D = P - 0.5, n0 = Math.ceil(P) + 2, r = rnd(m * 7919 + 13);
+    let ant = 0; for (let i = 0; i < n0; i++) { ant = ant * 0.45 + (r() * 2 - 1) * 0.55; y[i] = ant; }
+    const pk = Math.max(1, Math.round(P * 0.14)); for (let i = n0 - 1; i >= pk; i--) y[i] -= 0.85 * y[i - pk];
+    const d = Math.pow(0.001, 1 / (T * f));
+    for (let i = n0; i < len; i++) { const pos = i - D, i0 = Math.floor(pos), fr = pos - i0;
+      const a = y[i0] * (1 - fr) + y[i0 + 1] * fr, b = y[i0 - 1] * (1 - fr) + y[i0] * fr; y[i] = d * 0.5 * (a + b); }
+    let mx = 0; for (let i = 0; i < n0 * 4 && i < len; i++) mx = Math.max(mx, Math.abs(y[i]));
+    if (mx > 0) for (let i = 0; i < len; i++) y[i] /= mx;
+    cordas.set(chave, buf); return buf;
+  }
+  const KV = 1.0;
+  function tocarCordaSint(m, t, vol, T, soltar) {
+    const src = ac.createBufferSource(); src.buffer = corda(m, T);
+    const ga = ac.createGain(); ga.gain.setValueAtTime(vol, t);
+    if (soltar != null) ga.gain.setTargetAtTime(0, soltar, 0.07);
+    src.connect(ga); ga.connect(corpo); src.start(t); src.stop(t + T + 0.3); nos.push(src);
+  }
+  function agendarViolao(mus, t0, comMelodia = true) {
+    const {raiz, beat, prog, compassos} = mus;
+    const V = preparar(bancoViolao), real = !!V, hum = rnd(mus.exib.length * 131 + mus.dia * 7 + mus.mes);
+    const tocarCorda = (m, t, vol, T, solta) => real
+      ? tocarAmostra(V, m, t + (hum() - 0.5) * 0.008, vol * KV * (0.9 + hum() * 0.2), solta, amostras)
+      : tocarCordaSint(m, t, vol, T, solta);
+    const batida = [[0,"D",1],[1,"D",.8],[1.5,"C",.55],[2.5,"C",.55],[3,"D",.8],[3.5,"C",.55]];
+    for (let b = 0; b < compassos; b++) {
+      const ultimo = b === compassos - 1, gr = ultimo ? 0 : prog[b % 4];
+      const triade = [0,2,4].map(k => raiz - 12 + MAIOR[(gr + k) % 7] + 12 * Math.floor((gr + k) / 7));
+      const baixoN = triade[0] - 12 >= 40 ? triade[0] - 12 : triade[0];
+      const voz = [...new Set([baixoN, ...triade, triade[0] + 12])].sort((x, y) => x - y);
+      const tb = t0 + b * 4 * beat;
+      const rasgueado = (t, dir, v, solta) => {
+        const cs = dir === "D" ? voz.slice(1) : voz.slice(-3).reverse();
+        cs.forEach((n, i) => tocarCorda(n, t + i * 0.013, 0.1 * v, 1.8, solta));
+      };
+      if (ultimo) { tocarCorda(baixoN, tb, 0.3, 3, null); rasgueado(tb + 0.02, "D", 1, null); continue; }
+      tocarCorda(baixoN, tb, 0.22, 2, tb + 2 * beat);
+      tocarCorda(baixoN + 7, tb + 2 * beat, 0.15, 2, tb + 4 * beat);
+      batida.forEach(([bt, dir, v], i) => { const prox = i + 1 < batida.length ? batida[i + 1][0] : 4;
+        rasgueado(tb + bt * beat, dir, v, tb + prox * beat - 0.02); });
+    }
+    if (comMelodia) mus.ev.forEach(e => tocarCorda(e.m - 12, t0 + e.t, 0.62, e.ultima ? 3 : 2, e.ultima ? null : t0 + e.t + e.dur + 0.12));
+  }
+  // cada voz toca no seu instrumento; o acompanhamento segue o primeiro
+  function agendarTudo(mus, t0) {
+    const ins = mus.instrs, V = preparar(bancoViolao), P = preparar(bancoPiano), S = preparar(bancoSax);
+    const hum = rnd(mus.exib.length * 211 + mus.dia * 13 + mus.mes);
+    const Gt = preparar(bancoGaita), Hp = preparar(bancoHarpa);
+    if (ins.includes("violao")) agendarViolao(mus, t0, false);
+    else if (ins.includes("harpa") && Hp) agendarHarpaAcomp(mus, t0, Hp);
+    else if (P) agendarPianoReal(mus, t0, P, false, ins.includes("sax") ? 0.75 : 1);
+    else agendar(mus, t0, false);
+    // tocando juntos, cada voz baixa um pouco pra soma não estourar (banda de 3: 0,58; de 5: 0,45)
+    const kJ = mus.duo ? 0.8 : mus.familia ? Math.min(1, 1 / Math.sqrt(ins.length)) : 1;
+    mus.ev.forEach(e => {
+      const inst = ins[e.v] || ins[0], tt = t0 + e.t + (hum() - 0.5) * 0.008, k = (e.junto && !(mus.familia && e.ultima) ? kJ : 1) * (0.93 + hum() * 0.14);
+      const solta = e.ultima ? null : t0 + e.t + e.dur + (inst === "sax" ? -0.02 : 0.12);
+      if (inst === "violao") { if (V) tocarAmostra(V, e.m - 12, tt, 0.62 * KV * k, solta, amostras); else tocarCordaSint(e.m - 12, tt, 0.62 * k, e.ultima ? 3 : 2, solta); }
+      else if (inst === "sax" && S) tocarAmostra(S, e.m - 12, tt, 0.7 * k, e.ultima ? t0 + e.t + e.dur + 1.8 : solta, saxSaida);
+      else if (inst === "gaita" && Gt) tocarAmostra(Gt, e.m, tt, 0.6 * k, e.ultima ? t0 + e.t + e.dur + 1.5 : t0 + e.t + e.dur - 0.02, gaitaSaida);
+      else if (inst === "harpa" && Hp) tocarAmostra(Hp, e.m, tt, 0.8 * k, e.ultima ? null : t0 + e.t + e.dur + 0.6, harpaSaida);
+      else if (P) tocarAmostra(P, e.m, tt, 0.85 * k, e.ultima ? null : t0 + e.t + e.dur + 0.15, pianoSaida);
+      else piano(e.m, tt, e.dur, 0.26 * k, e.ultima);
+    });
+  }
+  function pararSom() { while (nos.length) { try { nos.pop().stop(); } catch (e) {} } }
+
+  // ---------- a imagem (canvas 1080x1920) ----------
+  const fundo = "#ffffff";
+  function faixaTeclas(y, h) {   // teclado chapado de ponta a ponta (7 brancas por oitava)
+    const kw = 60, kb = 38; g.fillStyle = "#ffffff"; g.fillRect(0, y, W, h);
+    g.fillStyle = "#111111"; for (let x = 0; x <= W; x += kw) g.fillRect(x - 2, y, 4, h);
+    for (let x = 0, i = 0; x < W + kw; x += kw, i++) if (i % 7 !== 2 && i % 7 !== 6) { g.beginPath(); g.roundRect ? g.roundRect(x + kw - kb / 2, y, kb, h * 0.6, 4) : g.rect(x + kw - kb / 2, y, kb, h * 0.6); g.fill(); }
+    g.fillRect(0, y + h - 5, W, 5); }
+  function marcador(txt, font, y, cor, giro) {   // texto em tinta sobre um bloco de cor (marca-texto)
+    g.font = font; const w = g.measureText(txt).width, me = g.measureText("Hg"), a = me.actualBoundingBoxAscent, d = me.actualBoundingBoxDescent;
+    g.save(); g.translate(W / 2, y - (a - d) / 2); g.rotate(giro || 0); g.fillStyle = cor; g.fillRect(-w / 2 - 22, -a / 2 - d / 2 - 14, w + 44, a + d + 28);
+    g.fillStyle = COR.branco; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(txt, 0, 0); g.restore(); g.textBaseline = "alphabetic"; }
+  function rnd(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+  function centro(txt, font, y, cor) { g.font = font; g.fillStyle = cor; g.textAlign = "center"; g.textBaseline = "alphabetic"; g.fillText(txt, W/2, y); }
+  function brilho(x, y, r, cor, a) { const gr = g.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, cor); gr.addColorStop(1, "rgba(0,0,0,0)");
+    g.globalAlpha = a; g.fillStyle = gr; g.fillRect(x - r, y - r, 2*r, 2*r); g.globalAlpha = 1; }
+  function encaixarFonte(txt, max, ini, peso) { let s = ini; do { g.font = `${peso} ${s}px ${FD}`; if (g.measureText(txt).width <= max) break; s -= 4; } while (s > 40); return s; }
+  function quebra(txt, font, max) { g.font = font; const ps = txt.split(" "); const ls = []; let l = "";
+    ps.forEach(p => { const t = l ? l + " " + p : p; if (g.measureText(t).width > max && l) { ls.push(l); l = p; } else l = t; }); if (l) ls.push(l); return ls; }
+
+  let mus = null, layout = null;
+  function prepararLayout(m) {
+    const linhas = m.charsV.map((chars, v) => {
+      const tam = encaixarFonte(m.exibs[v], 860 - 6 * (chars.length - 1), m.familia ? (m.exibs.length > 4 ? 64 : 76) : m.duo ? 118 : 200, 800);
+      g.font = `800 ${tam}px ${FD}`;
+      const larg = chars.map(c => c === " " ? tam * 0.32 : g.measureText(c).width);
+      const esp = 6, total = larg.reduce((a, b) => a + b, 0) + esp * (larg.length - 1);
+      const xs = []; let x = (W - total) / 2; larg.forEach(w => { xs.push(x); x += w + esp; });
+      const yF = m.familia ? 470 + v * (m.exibs.length > 4 ? 84 : 100) + (m.exibs.length === 3 ? 40 : 0) : 0;
+      return {chars, tam, larg, xs, y: m.familia ? yF : m.duo ? [528, 742][v] : 650};
+    });
+    const r = rnd(m.exib.length * 977 + m.dia * 31 + m.mes);
+    const part = [];
+    m.ev.forEach(e => { if (e.ci < 0) return; const Ln = linhas[e.v]; const cx = Ln.xs[e.ci] + Ln.larg[e.ci] / 2;
+      for (let k = 0; k < (e.junto ? 2 : 3); k++)
+        part.push({t0: e.t + k * 0.07, x: cx + (r() * 80 - 40), y: Ln.y - Ln.tam * 0.6, dx: r() * 120 - 60,
+          g: m.modo === "amor" && r() < .45 ? "♥" : (r() < .5 ? "♪" : "♫"), cor: [COR.ciano, COR.rosa, COR.branco][Math.floor(r() * 3)]}); });
+    const brancas = []; for (let n = m.raiz; n <= m.raiz + 28; n++) if ([0,2,4,5,7,9,11].includes(n % 12)) brancas.push(n);
+    return {linhas, tam: linhas[0].tam, larg: linhas[0].larg, xs: linhas[0].xs, part, brancas};
+  }
+
+  function desenhar(t, tocando) {
+    const m = mus, L = layout, frase = $("frase").value.trim();
+    g.fillStyle = fundo; g.fillRect(0, 0, W, H); faixaTeclas(0, 120);
+    const atuais = tocando ? m.ev.filter(e => e.t <= t && t < e.t + e.dur) : [];
+    const atual = atuais.find(e => e.v === 0) || atuais[0] || null;
+    const fase = atual ? (t - atual.t) / atual.dur : 0, pulso = atual ? Math.exp(-fase * 4) : 0;
+
+    centro("Qual é a música", `800 92px ${FD}`, 250, COR.branco);
+    marcador("do seu nome?", `800 92px ${FD}`, 355, COR.sol, -0.02);
+
+    const yN = L.linhas[0].y;
+    L.linhas.forEach((Ln, v) => {
+      const at = atuais.find(e => e.v === v && e.ci >= 0), tocou = tocando && m.ev.some(e => e.v === v && e.t <= t);
+      const corCor = m.familia ? CORES_BANDA[v] : m.duo && v === 1 ? COR.rosa : COR.sol;
+      { const x0 = Ln.xs[0], x1 = Ln.xs[Ln.xs.length - 1] + Ln.larg[Ln.larg.length - 1]; g.fillStyle = corCor; g.fillRect(x0, Ln.y + 14, x1 - x0, m.familia ? 8 : 12); }
+      const todos = m.familia && atuais.some(e => e.junto);
+      g.textAlign = "left"; g.textBaseline = "alphabetic";
+      Ln.chars.forEach((c, i) => {
+        if (at && i === at.ci) {
+          const pl = Math.exp(-((t - at.t) / at.dur) * 4);
+          const tg = Math.round(Ln.tam * 1.25), lx = Ln.xs[i] + Ln.larg[i] / 2, ly = Ln.y - 30 * pl + Ln.tam * 0.08;
+          g.font = `800 ${tg}px ${FD}`; const lw2 = Math.max(g.measureText(c).width, tg * 0.5) + 28;
+          g.fillStyle = corCor; g.beginPath(); g.roundRect ? g.roundRect(lx - lw2 / 2, ly - tg * 0.86, lw2, tg * 1.04, 12) : g.rect(lx - lw2 / 2, ly - tg * 0.86, lw2, tg * 1.04); g.fill();
+          g.lineWidth = 4; g.strokeStyle = COR.branco; g.stroke(); g.fillStyle = COR.branco; g.textAlign = "center";
+          g.fillText(c, Ln.xs[i] + Ln.larg[i] / 2, Ln.y - 30 * pl + Ln.tam * 0.08);
+          if (!m.duo && !m.familia) { g.font = `700 42px ${FC}`; g.fillText(at.nota, Ln.xs[i] + Ln.larg[i] / 2, Ln.y + 64); }
+          g.textAlign = "left";
+        } else { g.font = `800 ${Ln.tam}px ${FD}`; g.fillStyle = todos || tocou ? COR.branco : "#b8b8b8"; g.fillText(c, Ln.xs[i], Ln.y); }
+      });
+    });
+    if (m.duo) { const sinal = (REL[m.modo] || REL.amor).sinal, pj = atuais.some(e => e.junto) ? 1 + 0.15 * Math.sin(t * 12) : 1;
+      centro(sinal, `800 ${Math.round(58 * pj)}px ${FD}`, 618, sinal === "♥" ? COR.rosa : COR.lilas); }
+
+    let y = m.duo ? 850 : 820;
+    const dataTxt = String(m.dia).padStart(2, "0") + "/" + String(m.mes).padStart(2, "0");
+    if (m.familia) y = 818; else centro(dataTxt, `800 64px ${FD}`, y, COR.branco);
+    if (frase) { quebra(frase, `700 50px ${FC}`, 900).slice(0, 1).forEach(l => { y += m.duo || m.familia ? 62 : 70; centro(l, `700 50px ${FC}`, y, COR.rosaTxt); }); }
+    const NI = {piano: "Piano", sax: "Saxofone", violao: "Violão", gaita: "Gaita", harpa: "Harpa"};
+    if (m.familia) centro(`${dataTxt}  •  ${m.tom} maior  •  ${m.bpm} batidas por minuto`, `500 34px ${FC}`, y + 50, COR.lilas);
+    else centro(`${[...new Set(m.instrs)].map(i => NI[i]).join(" & ")}  •  ${m.tom} maior  •  ${m.bpm} batidas por minuto`, `500 36px ${FC}`, y + (m.duo ? 56 : 62), COR.lilas);
+    if (m.familia && atual && !atual.junto) { g.font = `700 34px ${FC}`; g.textAlign = "left";
+      const Ln = L.linhas[atual.v], xi = Ln.xs[Ln.xs.length - 1] + Ln.larg[Ln.larg.length - 1] + 20;
+      g.fillStyle = CORES_BANDA[atual.v]; g.fillRect(xi, Ln.y - Ln.tam * 0.25 - 26, 26, 26); g.fillStyle = COR.branco; g.fillText(NI[m.instrs[atual.v]], xi + 36, Ln.y - Ln.tam * 0.25); }
+
+    const fim = tocando && t >= m.fimMusica;
+    instVis = atual ? m.instrs[atual.v] || m.instrs[0] : m.instrs[0];
+    if (instVis === "violao") desenharViolao(m, atual && atual.v === 1 && !atual.junto ? atual : atual, t, pulso, tocando);
+    else if (instVis === "sax") desenharSax(m, atual, t, fase, pulso);
+    else if (instVis === "gaita") desenharGaita(m, atual, t, fase, pulso);
+    else if (instVis === "harpa") desenharHarpa(m, atual, t, pulso);
+    else desenharPiano(m, atual, pulso);
+    // etiqueta da nota que está tocando
+    const cap = n => n[0].toUpperCase() + n.slice(1);
+    const rot = atual ? (atuais.length > 2 ? "♪ Todos juntos!" : "♪ " + [...new Set(atuais.map(e => cap(e.nota)))].join(" + ")) : (fim ? "Fim" : "♪");
+    g.font = `800 58px ${FD}`; const lw = g.measureText(rot).width + 70;
+    g.fillStyle = COR.branco; rr4(W/2 - lw/2 + 8, 970, lw, 84, 14);
+    g.fillStyle = atual ? COR.sol : COR.papel; rr4(W/2 - lw/2, 962, lw, 84, 14);
+    g.lineWidth = 5; g.strokeStyle = COR.branco; g.beginPath(); g.roundRect ? g.roundRect(W/2 - lw/2, 962, lw, 84, 14) : g.rect(W/2 - lw/2, 962, lw, 84); g.stroke();
+    g.fillStyle = COR.branco; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(rot, W/2, 1006); g.textBaseline = "alphabetic";
+
+    const pr = tocando ? Math.min(1, t / m.fimMusica) : 0;
+    g.fillStyle = "#e4e4e4"; rr4(70, 1560, 940, 16, 8);
+    if (pr > 0) { g.fillStyle = COR.branco; rr4(70, 1560, Math.max(16, 940 * pr), 16, 8); }
+    g.font = `700 34px ${FC}`; g.fillStyle = COR.lilas; g.textAlign = "left"; g.fillText("Música do Nome  •  @nerisnelsonfs", 70, 1640);
+
+    if (tocando) L.part.forEach(p => { const a = t - p.t0; if (a >= 0 && a < 1.6) {
+      g.globalAlpha = 1 - a / 1.6; g.font = `64px ${FC}`; g.fillStyle = p.cor; g.textAlign = "center"; g.fillText(p.g, p.x + p.dx * a, p.y - 200 * a); g.globalAlpha = 1; } });
+
+    if (fim && t > m.fimMusica + 0.3) {
+      const k = Math.min(1, (t - m.fimMusica - 0.3) / 0.5);
+      g.fillStyle = `rgba(255,255,255,${k})`; g.fillRect(0, 0, W, H); if (k > 0.5) faixaTeclas(0, 120);
+      if (k > 0.5 && m.familia) {
+        const a2 = Math.min(1, (t - m.fimMusica - 0.8) / 1.4), pct = Math.round(m.score * Math.max(0, a2));
+        centro("A banda da família", `800 80px ${FD}`, 440, COR.branco);
+        const nomesTxt = m.exibs.join(" • "), tn = encaixarFonte(nomesTxt, 900, 52, 700);
+        g.font = `700 ${tn}px ${FD}`; let xx = (W - g.measureText(nomesTxt).width) / 2; g.textAlign = "left";
+        m.exibs.forEach((n, v) => { const wn = g.measureText(n).width; g.fillStyle = CORES_BANDA[v]; g.fillRect(xx, 540, wn, 10); g.fillStyle = COR.branco; g.fillText(n, xx, 525); xx += g.measureText(n + " • ").width; });
+        centro("Sintonia da família", `700 56px ${FC}`, 640, COR.lilas);
+        marcador(pct + "%", `800 ${Math.round(200 * (1 + (a2 >= 1 ? 0.03 * Math.sin(t * 6) : 0)))}px ${FD}`, 870, COR.sol, -0.03);
+        if (a2 >= 1) {
+          const b = m.melhor;
+          const fTxt = m.score >= 85 ? "Família afinadíssima!" : m.score >= 60 ? "Uma banda de respeito!" : "Cada um no seu tom, e juntos ficam lindos!";
+          centro(fTxt, `800 ${encaixarFonte(fTxt, 940, 64, 800)}px ${FD}`, 985, COR.rosaTxt);
+          centro("A dupla que mais combina:", `700 42px ${FC}`, 1060, COR.lilas);
+          const dTxt = `${m.exibs[b.i]} e ${m.exibs[b.j]}: ${b.total}%`;
+          centro(dTxt, `800 ${encaixarFonte(dTxt, 900, 56, 800)}px ${FD}`, 1128, COR.branco);
+        }
+        centro("Faça a da sua família na", `700 50px ${FC}`, 1210, COR.lilas);
+        centro("Música do Nome", `800 70px ${FD}`, 1290, COR.rosaTxt);
+        centro("Siga @nerisnelsonfs", `700 54px ${FC}`, 1385, COR.branco);
+      } else if (k > 0.5 && m.duo) {
+        const r = REL[m.modo] || REL.amor, a2 = Math.min(1, (t - m.fimMusica - 0.8) / 1.4), pct = Math.round(m.score * Math.max(0, a2));
+        if (m.modo === "amor") for (let h = 0; h < 14; h++) { const fx = ((h * 137) % 900) + 90, vel = 60 + (h * 53) % 90, fy = 1500 - ((t * vel + h * 97) % 1200);
+          g.globalAlpha = 0.22 + 0.3 * ((h % 3) / 2); g.font = `${40 + (h % 4) * 14}px ${FC}`; g.fillStyle = COR.rosa; g.textAlign = "center";
+          g.fillText("♥", fx, fy); g.globalAlpha = 1; }
+        const par = `${m.exibs[0]} ${r.sinal} ${m.exibs[1]}`; const tp = encaixarFonte(par, 900, 96, 800);
+        centro(par, `800 ${tp}px ${FD}`, 470, COR.branco);
+        centro(r.fim, `700 58px ${FC}`, 590, COR.lilas);
+        const pz = 1 + (a2 >= 1 ? 0.04 * Math.sin(t * 6) : 0);
+        marcador(pct + "%", `800 ${Math.round(210 * pz)}px ${FD}`, 840, COR.sol, -0.03);
+        if (a2 >= 1) {
+          centro(m.score >= 90 ? "Combinação perfeita!" : m.score >= 80 ? "Dupla muito afinada!" : "Diferentes que se completam!", `800 64px ${FD}`, 960, COR.rosaTxt);
+          centro(`Nomes ${m.scoreNomes}%  +  instrumentos ${m.bonus}%`, `600 40px ${FC}`, 1035, COR.lilas);
+          if (m.fraseInstr) centro(m.fraseInstr, `700 44px ${FC}`, 1095, COR.branco);
+        }
+        centro("Faça a de vocês na", `700 50px ${FC}`, 1210, COR.lilas);
+        centro("Música do Nome", `800 70px ${FD}`, 1290, COR.rosaTxt);
+        centro("Siga @nerisnelsonfs", `700 54px ${FC}`, 1385, COR.branco);
+      } else if (k > 0.5) {
+        centro("E o seu nome,", `800 84px ${FD}`, 760, COR.branco);
+        marcador("que música faz?", `800 84px ${FD}`, 860, COR.sol, -0.02);
+        centro("Faça a sua na", `700 50px ${FC}`, 1010, COR.lilas);
+        centro("Música do Nome", `800 70px ${FD}`, 1095, COR.rosaTxt);
+        centro("Siga @nerisnelsonfs", `700 54px ${FC}`, 1210, COR.branco);
+      }
+    }
+  }
+  // ---------- o instrumento na tela acompanha o som (desenhos com luz, sombra e textura) ----------
+  function rrp(c, x, y, w, h, r) { c.beginPath(); if (c.roundRect) c.roundRect(x, y, w, h, r); else c.rect(x, y, w, h); }
+  const baseCache = new Map(); let instVis = null;
+  function baseInstr(m) {
+    const inst = instVis || m.instr, chave = inst + "|" + m.raiz;
+    if (baseCache.has(chave)) return baseCache.get(chave);
+    const c = document.createElement("canvas"); c.width = W; c.height = H; const x = c.getContext("2d");
+    if (inst === "violao") baseViolao(x); else if (inst === "sax") baseSax(x); else if (inst === "gaita") baseGaita(x); else if (inst === "harpa") baseHarpa(x); else basePiano(x);
+    baseCache.set(chave, c); return c;
+  }
+
+  // ===== violão clássico =====
+  const VI = {cy: 1272, nut: 205, f12: 565, sela: 842};
+  const ABERTAS = [40, 45, 50, 55, 59, 64];                    // de cima (mi grave) para baixo (mi agudo)
+  const trasteX = k => VI.nut + 2 * (VI.f12 - VI.nut) * (1 - Math.pow(2, -k / 12));
+  const cordaY = (i, x) => VI.cy + (i - 2.5) * (9.5 + 3 * (x - VI.nut) / (VI.sela - VI.nut));
+  function casaNoViolao(n) {
+    for (let i = 5; i >= 0; i--) { const f = n - ABERTAS[i]; if (f >= 0 && f <= 12) return [i, f]; }
+    return [0, Math.max(0, Math.min(12, n - 40))];
+  }
+  function caminhoCorpo(c) {
+    const cy = VI.cy; c.beginPath(); c.moveTo(548, cy - 72);
+    c.bezierCurveTo(552, cy - 118, 600, cy - 122, 645, cy - 118);
+    c.bezierCurveTo(690, cy - 114, 700, cy - 92, 722, cy - 92);
+    c.bezierCurveTo(748, cy - 92, 762, cy - 150, 828, cy - 150);
+    c.bezierCurveTo(886, cy - 150, 916, cy - 100, 916, cy);
+    c.bezierCurveTo(916, cy + 100, 886, cy + 150, 828, cy + 150);
+    c.bezierCurveTo(762, cy + 150, 748, cy + 92, 722, cy + 92);
+    c.bezierCurveTo(700, cy + 92, 690, cy + 114, 645, cy + 118);
+    c.bezierCurveTo(600, cy + 122, 552, cy + 118, 548, cy + 72); c.closePath();
+  }
+  function baseViolao(c) {
+    const cy = VI.cy, r = rnd(4242);
+    // sombra no chão
+    c.save(); c.shadowColor = "rgba(0,0,0,0.6)"; c.shadowBlur = 46; c.shadowOffsetY = 22;
+    caminhoCorpo(c); c.fillStyle = "#1a0d05"; c.fill();
+    rrp(c, 80, cy - 40, 540, 80, 18); c.fill(); c.restore();
+    // laterais e filete
+    caminhoCorpo(c); c.fillStyle = "#2a150a"; c.fill();
+    // tampo de abeto
+    c.save(); caminhoCorpo(c); c.clip();
+    const tp = c.createLinearGradient(0, cy - 150, 0, cy + 150);
+    tp.addColorStop(0, "#f3d49b"); tp.addColorStop(0.5, "#e2b26c"); tp.addColorStop(1, "#c98a45");
+    c.fillStyle = tp; c.fillRect(540, cy - 160, 390, 320);
+    for (let k = 0; k < 120; k++) {                       // veios da madeira
+      const y = cy - 150 + k * 2.6 + r() * 1.5; c.strokeStyle = `rgba(120,70,25,${0.05 + r() * 0.12})`; c.lineWidth = 0.6 + r() * 1.2;
+      c.beginPath(); c.moveTo(540, y); for (let x = 540; x <= 930; x += 30) c.lineTo(x, y + Math.sin(x / 70 + k) * 1.2); c.stroke();
+    }
+    const vin = c.createRadialGradient(760, cy, 60, 760, cy, 230); vin.addColorStop(0, "rgba(0,0,0,0)"); vin.addColorStop(1, "rgba(80,38,8,0.45)");
+    c.fillStyle = vin; c.fillRect(540, cy - 160, 390, 320); c.restore();
+    caminhoCorpo(c); c.lineWidth = 12; c.strokeStyle = "#3a1f0e"; c.stroke(); c.lineWidth = 3; c.strokeStyle = "#f1e2c0"; c.stroke();
+    // roseta e boca
+    const bx = 690;
+    for (let k = 0; k < 4; k++) { c.beginPath(); c.arc(bx, cy, 70 - k * 5, 0, 7); c.lineWidth = 3; c.strokeStyle = k % 2 ? "#f2e6c8" : "#3b2212"; c.stroke(); }
+    for (let a = 0; a < 48; a++) { const ang = a / 48 * Math.PI * 2; c.save(); c.translate(bx + Math.cos(ang) * 55, cy + Math.sin(ang) * 55); c.rotate(ang);
+      c.fillStyle = ["#2f6b4f", "#b43c2f", "#f2e6c8", "#c48b2b"][a % 4]; c.fillRect(-3.5, -4, 7, 8); c.restore(); }
+    c.beginPath(); c.arc(bx, cy, 46, 0, 7); c.lineWidth = 4; c.strokeStyle = "#3b2212"; c.stroke();
+    const boca = c.createRadialGradient(bx - 8, cy - 8, 5, bx, cy, 46); boca.addColorStop(0, "#2a160a"); boca.addColorStop(1, "#050201");
+    c.beginPath(); c.arc(bx, cy, 44, 0, 7); c.fillStyle = boca; c.fill();
+    // cavalete
+    const cav = c.createLinearGradient(0, cy - 62, 0, cy + 62); cav.addColorStop(0, "#4a2a16"); cav.addColorStop(1, "#24120a");
+    rrp(c, VI.sela + 2, cy - 62, 34, 124, 8); c.fillStyle = cav; c.fill();
+    c.fillStyle = "#f5efe0"; c.fillRect(VI.sela - 2, cy - 36, 5, 72);
+    // braço (escala de jacarandá) com trastes
+    c.beginPath(); c.moveTo(VI.nut, cy - 30); c.lineTo(612, cy - 38); c.lineTo(612, cy + 38); c.lineTo(VI.nut, cy + 30); c.closePath();
+    const esc = c.createLinearGradient(0, cy - 38, 0, cy + 38); esc.addColorStop(0, "#3d2617"); esc.addColorStop(0.5, "#2a170c"); esc.addColorStop(1, "#1b0e06");
+    c.fillStyle = esc; c.fill();
+    for (let k = 0; k < 20; k++) { c.strokeStyle = `rgba(0,0,0,${0.15 + r() * 0.2})`; c.lineWidth = 1; const y = cy - 30 + k * 3.1;
+      c.beginPath(); c.moveTo(VI.nut, y); c.lineTo(612, y + (k - 10) * 0.4); c.stroke(); }
+    for (let k = 1; k <= 13; k++) { const x = trasteX(k); if (x > 610) break; const h = 30 + 8 * (x - VI.nut) / (612 - VI.nut);
+      const tg = c.createLinearGradient(x - 2, 0, x + 3, 0); tg.addColorStop(0, "#ffffff"); tg.addColorStop(1, "#8d8f99");
+      c.fillStyle = tg; c.fillRect(x - 2, cy - h, 5, 2 * h); }
+    // mão (cabeça vazada) e tarraxas
+    c.beginPath(); c.moveTo(VI.nut, cy - 31); c.lineTo(92, cy - 42); c.quadraticCurveTo(76, cy, 92, cy + 42); c.lineTo(VI.nut, cy + 31); c.closePath();
+    const mao = c.createLinearGradient(0, cy - 42, 0, cy + 42); mao.addColorStop(0, "#5a331b"); mao.addColorStop(1, "#2c170b"); c.fillStyle = mao; c.fill();
+    rrp(c, 104, cy - 26, 86, 16, 8); c.fillStyle = "#0e0703"; c.fill(); rrp(c, 104, cy + 10, 86, 16, 8); c.fill();
+    [120, 147, 174].forEach(x => { [-1, 1].forEach(s => {
+      c.fillStyle = "#c9a24a"; c.fillRect(x - 3, cy + s * 42 - (s < 0 ? 12 : 0), 6, 12);
+      c.beginPath(); c.ellipse(x, cy + s * 62, 10, 15, 0, 0, 7); const bt = c.createLinearGradient(x - 10, 0, x + 10, 0);
+      bt.addColorStop(0, "#fffaf0"); bt.addColorStop(1, "#cbbfa6"); c.fillStyle = bt; c.fill(); }); });
+    c.fillStyle = "#f7f1e2"; c.fillRect(VI.nut - 6, cy - 31, 7, 62);   // pestana de osso
+    // brilho do verniz
+    c.save(); caminhoCorpo(c); c.clip(); const bri = c.createRadialGradient(790, cy - 80, 10, 790, cy - 80, 170);
+    bri.addColorStop(0, "rgba(255,255,255,0.28)"); bri.addColorStop(1, "rgba(255,255,255,0)"); c.fillStyle = bri; c.fillRect(540, cy - 160, 390, 320); c.restore();
+    // cordas
+    for (let i = 0; i < 6; i++) desenharCorda(c, i, 0, 0, null);
+  }
+  function desenharCorda(c, i, amp, t, cor) {
+    const enc = i < 3, larg = [3.6, 3.1, 2.6, 2.2, 1.9, 1.6][i];
+    c.beginPath();
+    for (let x = 150; x <= VI.sela; x += 8) {
+      const xs = Math.max(x, VI.nut), y0 = x < VI.nut ? VI.cy + (i - 2.5) * 6 + (cordaY(i, VI.nut) - (VI.cy + (i - 2.5) * 6)) * (x - 150) / (VI.nut - 150) : cordaY(i, xs);
+      const env = x > VI.nut ? Math.sin(Math.PI * (x - VI.nut) / (VI.sela - VI.nut)) : 0;
+      const y = y0 + amp * env * Math.sin(t * 90 + i);
+      x === 150 ? c.moveTo(x, y) : c.lineTo(x, y);
+    }
+    c.lineWidth = larg; c.strokeStyle = cor || (enc ? "#d9d4cc" : "rgba(250,246,236,0.9)"); c.stroke();
+    if (!cor && enc) { c.lineWidth = larg * 0.35; c.strokeStyle = "rgba(255,255,255,0.7)"; c.stroke(); }
+  }
+  function desenharViolao(mus, atual, t, pulso, tocando) {
+    g.drawImage(baseInstr(mus), 0, 0);
+    let ras = 0;                                         // brilho do rasgueado nas batidas
+    if (tocando && t < mus.fimMusica) { const bt = (t / mus.beat) % 4, pts = [0, 1, 1.5, 2.5, 3, 3.5];
+      let ult = 0; pts.forEach(p => { if (p <= bt) ult = p; }); ras = Math.exp(-(bt - ult) * mus.beat * 9); }
+    if (ras > 0.02) for (let i = 0; i < 6; i++) desenharCorda(g, i, 2.2 * ras, t, `rgba(255,236,170,${0.25 + 0.5 * ras})`);
+    if (!atual) return;
+    const [i, f] = casaNoViolao(atual.m - 12);
+    g.save(); g.shadowColor = "rgba(255,210,63,0.95)"; g.shadowBlur = 18;
+    desenharCorda(g, i, 7 * pulso + 1, t, COR.sol); g.restore();
+    const x = f === 0 ? VI.nut - 2 : (trasteX(f - 1) + trasteX(f)) / 2, y = cordaY(i, x);
+    brilho(x, y, 70, "rgba(255,210,63,0.75)", 1);
+    g.beginPath(); g.arc(x, y, 17 + 5 * pulso, 0, 7); g.fillStyle = COR.sol; g.fill(); g.lineWidth = 4; g.strokeStyle = "#2a1600"; g.stroke();
+  }
+
+  // ===== saxofone alto =====
+  const SAXL = (() => {
+    const pts = [];
+    const quad = (a, b, cc, n, r0, r1) => { for (let k = 0; k <= n; k++) { const u = k / n, v = 1 - u;
+      pts.push({x: v*v*a[0] + 2*v*u*b[0] + u*u*cc[0], y: v*v*a[1] + 2*v*u*b[1] + u*u*cc[1], r: r0 + (r1 - r0) * u}); } };
+    const cub = (a, b, cc, d, n, r0, r1) => { for (let k = 1; k <= n; k++) { const u = k / n, v = 1 - u;
+      pts.push({x: v*v*v*a[0] + 3*v*v*u*b[0] + 3*v*u*u*cc[0] + u*u*u*d[0], y: v*v*v*a[1] + 3*v*v*u*b[1] + 3*v*u*u*cc[1] + u*u*u*d[1], r: r0 + (r1 - r0) * u}); } };
+    quad([150, 1112], [215, 1100], [250, 1160], 14, 10, 15);
+    const iCorpo = pts.length;
+    quad([250, 1160], [420, 1245], [590, 1335], 40, 16, 43);
+    const fCorpo = pts.length;
+    cub([590, 1335], [640, 1362], [665, 1440], [722, 1440], 20, 43, 52);
+    cub([722, 1440], [780, 1440], [790, 1380], [788, 1320], 16, 52, 55);
+    for (let k = 1; k <= 28; k++) { const u = k / 28; pts.push({x: 788 + 18 * u * u, y: 1320 - 230 * u, r: 55 + 46 * Math.pow(u, 3)}); }
+    pts.forEach((p, k) => { const a = pts[Math.max(0, k - 1)], b = pts[Math.min(pts.length - 1, k + 1)];
+      const dx = b.x - a.x, dy = b.y - a.y, l = Math.hypot(dx, dy) || 1; p.nx = -dy / l; p.ny = dx / l; });
+    return {pts, iCorpo, fCorpo};
+  })();
+  function chavesSax() {
+    const {pts, iCorpo, fCorpo} = SAXL, ch = [];
+    [0.1, 0.22, 0.34, 0.52, 0.64, 0.76, 0.88].forEach(u => { const p = pts[Math.round(iCorpo + u * (fCorpo - iCorpo - 1))];
+      ch.push({x: p.x - p.nx * p.r * 0.5, y: p.y - p.ny * p.r * 0.5, r: 13 + p.r * 0.12}); });
+    return ch;
+  }
+  function baseSax(c) {
+    const {pts, iCorpo, fCorpo} = SAXL;
+    const contorno = () => { c.beginPath(); pts.forEach((p, k) => { const x = p.x + p.nx * p.r, y = p.y + p.ny * p.r; k ? c.lineTo(x, y) : c.moveTo(x, y); });
+      for (let k = pts.length - 1; k >= 0; k--) { const p = pts[k]; c.lineTo(p.x - p.nx * p.r, p.y - p.ny * p.r); } c.closePath(); };
+    c.save(); c.shadowColor = "rgba(0,0,0,0.55)"; c.shadowBlur = 44; c.shadowOffsetY = 24; contorno(); c.fillStyle = "#3a2604"; c.fill(); c.restore();
+    const lata = c.createLinearGradient(0, 1080, 0, 1470); lata.addColorStop(0, "#f8de8a"); lata.addColorStop(0.45, "#dcae45"); lata.addColorStop(1, "#9e6c14");
+    contorno(); c.fillStyle = lata; c.fill();
+    c.save(); contorno(); c.clip(); c.lineCap = "round";
+    for (let k = 1; k < pts.length; k++) { const a = pts[k - 1], b = pts[k];
+      c.strokeStyle = "rgba(90,52,0,0.38)"; c.lineWidth = b.r * 0.55;                       // sombra do tubo
+      c.beginPath(); c.moveTo(a.x + a.nx * a.r * 0.62, a.y + a.ny * a.r * 0.62); c.lineTo(b.x + b.nx * b.r * 0.62, b.y + b.ny * b.r * 0.62); c.stroke();
+      c.strokeStyle = "rgba(255,250,220,0.55)"; c.lineWidth = Math.max(2, b.r * 0.16);       // reflexo do metal
+      c.beginPath(); c.moveTo(a.x - a.nx * a.r * 0.42, a.y - a.ny * a.r * 0.42); c.lineTo(b.x - b.nx * b.r * 0.42, b.y - b.ny * b.r * 0.42); c.stroke(); }
+    c.restore();
+    contorno(); c.lineWidth = 2.5; c.strokeStyle = "rgba(110,70,8,0.9)"; c.stroke();
+    // anéis do corpo e varetas das chaves
+    [iCorpo + 2, fCorpo - 1].forEach(k => { const p = pts[k]; c.beginPath(); c.moveTo(p.x + p.nx * p.r, p.y + p.ny * p.r); c.lineTo(p.x - p.nx * p.r, p.y - p.ny * p.r);
+      c.lineWidth = 6; c.strokeStyle = "#f6dc8a"; c.stroke(); });
+    c.beginPath(); for (let k = iCorpo + 3; k < fCorpo - 2; k++) { const p = pts[k], x = p.x - p.nx * p.r * 0.82, y = p.y - p.ny * p.r * 0.82; k === iCorpo + 3 ? c.moveTo(x, y) : c.lineTo(x, y); }
+    c.lineWidth = 4; c.strokeStyle = "#f3d27a"; c.stroke();
+    // copos das sapatilhas do outro lado
+    [0.2, 0.42, 0.62, 0.8, 0.95].forEach(u => { const p = pts[Math.round(iCorpo + u * (fCorpo - iCorpo - 1))];
+      const x = p.x + p.nx * p.r * 0.72, y = p.y + p.ny * p.r * 0.72, rr = 10 + p.r * 0.28;
+      const cg = c.createRadialGradient(x - rr * 0.3, y - rr * 0.3, 2, x, y, rr); cg.addColorStop(0, "#fff0b8"); cg.addColorStop(1, "#a8761b");
+      c.beginPath(); c.arc(x, y, rr, 0, 7); c.fillStyle = cg; c.fill(); c.lineWidth = 2; c.strokeStyle = "#7a520c"; c.stroke(); });
+    // chaves de madrepérola
+    chavesSax().forEach(k => {
+      c.beginPath(); c.arc(k.x, k.y, k.r + 5, 0, 7); c.fillStyle = "#c99a33"; c.fill(); c.lineWidth = 2; c.strokeStyle = "#7a520c"; c.stroke();
+      const pg = c.createRadialGradient(k.x - k.r * 0.35, k.y - k.r * 0.35, 1, k.x, k.y, k.r);
+      pg.addColorStop(0, "#ffffff"); pg.addColorStop(0.6, "#efe6d6"); pg.addColorStop(1, "#c9b9a0");
+      c.beginPath(); c.arc(k.x, k.y, k.r, 0, 7); c.fillStyle = pg; c.fill(); });
+    // campana: boca escura e borda
+    const u = pts[pts.length - 1];
+    const boca = c.createRadialGradient(u.x, u.y + 4, 4, u.x, u.y, u.r); boca.addColorStop(0, "#1a1002"); boca.addColorStop(0.7, "#4a3306"); boca.addColorStop(1, "#8a6216");
+    c.beginPath(); c.ellipse(u.x, u.y, u.r, u.r * 0.26, 0, 0, 7); c.fillStyle = boca; c.fill();
+    c.lineWidth = 7; c.strokeStyle = "#ffe9a3"; c.stroke(); c.lineWidth = 2; c.strokeStyle = "#8a5d0e"; c.stroke();
+    // gravação na campana
+    c.strokeStyle = "rgba(110,70,8,0.45)"; c.lineWidth = 2;
+    for (let k = 0; k < 4; k++) { c.beginPath(); c.arc(812 + k * 6, 1205 + k * 12, 14 + k * 5, Math.PI * (0.2 + k * 0.1), Math.PI * (1.3 + k * 0.1)); c.stroke(); }
+    // boquilha, braçadeira e palheta
+    const bq = c.createLinearGradient(0, 1100, 0, 1126); bq.addColorStop(0, "#4a4550"); bq.addColorStop(0.5, "#141217"); bq.addColorStop(1, "#060508");
+    c.beginPath(); c.moveTo(152, 1101); c.lineTo(86, 1104); c.quadraticCurveTo(74, 1112, 86, 1120); c.lineTo(152, 1125); c.closePath(); c.fillStyle = bq; c.fill();
+    c.fillStyle = "#e6d3a0"; c.fillRect(84, 1118, 52, 5);
+    const lig = c.createLinearGradient(0, 1098, 0, 1128); lig.addColorStop(0, "#ffffff"); lig.addColorStop(1, "#8d8f99"); c.fillStyle = lig; c.fillRect(128, 1098, 12, 30);
+  }
+  function desenharSax(mus, atual, t, fase, pulso) {
+    g.drawImage(baseInstr(mus), 0, 0);
+    const ch = chavesSax(), n = atual ? atual.m - 12 : null, fechadas = n == null ? 0 : Math.max(0, Math.min(7, Math.round((82 - n) / 29 * 7)));
+    ch.forEach((k, i) => { if (i >= fechadas) return;
+      brilho(k.x, k.y, 46, "rgba(255,210,63,0.7)", 1);
+      const pg = g.createRadialGradient(k.x - k.r * 0.3, k.y - k.r * 0.3, 1, k.x, k.y, k.r); pg.addColorStop(0, "#fff7cc"); pg.addColorStop(1, "#ffc21a");
+      g.beginPath(); g.arc(k.x, k.y, k.r, 0, 7); g.fillStyle = pg; g.fill(); });
+    if (!atual) return;
+    const u = SAXL.pts[SAXL.pts.length - 1];
+    brilho(u.x, u.y - 30, 170, `rgba(255,210,63,${0.25 + 0.3 * pulso})`, 1);
+    for (let k = 0; k < 4; k++) { const f = (fase * 1.2 + k / 4) % 1;
+      g.globalAlpha = (1 - f) * 0.85; g.strokeStyle = k % 2 ? COR.rosa : COR.sol; g.lineWidth = 7 - 4 * f;
+      g.beginPath(); g.ellipse(u.x, u.y - 12 - f * 75, u.r * (0.95 + f * 0.6), u.r * (0.26 + f * 0.18), 0, Math.PI, Math.PI * 2); g.stroke(); }
+    g.globalAlpha = 1;
+  }
+
+  // ===== piano de cauda =====
+  function basePiano(c) {
+    const L = layout, x0 = 76, x1 = 884, kw = (x1 - x0) / L.brancas.length;
+    c.save(); c.shadowColor = "rgba(0,0,0,0.6)"; c.shadowBlur = 44; c.shadowOffsetY = 22; rrp(c, 52, 1070, 856, 440, 26); c.fillStyle = "#050507"; c.fill(); c.restore();
+    const laca = c.createLinearGradient(0, 1070, 0, 1250); laca.addColorStop(0, "#2b2b34"); laca.addColorStop(0.35, "#0d0d12"); laca.addColorStop(1, "#050507");
+    rrp(c, 52, 1070, 856, 190, 26); c.fillStyle = laca; c.fill();
+    const refl = c.createLinearGradient(52, 1070, 700, 1250); refl.addColorStop(0, "rgba(255,255,255,0.16)"); refl.addColorStop(0.4, "rgba(255,255,255,0.02)"); refl.addColorStop(1, "rgba(255,255,255,0)");
+    rrp(c, 60, 1078, 840, 70, 20); c.fillStyle = refl; c.fill();
+    c.fillStyle = "#c9a24a"; c.fillRect(90, 1238, 780, 2);
+    c.fillStyle = "#7d1828"; c.fillRect(70, 1250, 820, 8);                         // feltro vermelho
+    [[52, 24], [884, 24]].forEach(([x, w]) => { rrp(c, x, 1240, w, 270, 10); const bl = c.createLinearGradient(x, 0, x + w, 0);
+      bl.addColorStop(0, "#22222a"); bl.addColorStop(1, "#060608"); c.fillStyle = bl; c.fill(); });
+    L.brancas.forEach((n, i) => teclaBranca(c, x0 + i * kw, kw, false));
+    L.brancas.forEach((n, i) => { const p = n + 1; if ([1,3,6,8,10].includes(p % 12) && p <= mus.raiz + 28) teclaPreta(c, x0 + i * kw + kw * 0.66, kw * 0.68, false); });
+  }
+  function teclaBranca(c, x, w, on) {
+    const y0 = 1258, y1 = 1500 + (on ? 3 : 0), gr = c.createLinearGradient(0, y0, 0, y1);
+    if (on) { gr.addColorStop(0, "#ffe9a0"); gr.addColorStop(1, "#ffc93a"); } else { gr.addColorStop(0, "#fffdf8"); gr.addColorStop(0.85, "#f1ece2"); gr.addColorStop(1, "#d8d1c4"); }
+    rrp(c, x + 2, y0, w - 4, y1 - y0, [0, 0, 8, 8]); c.fillStyle = gr; c.fill();
+    c.fillStyle = on ? "rgba(150,90,0,0.35)" : "rgba(0,0,0,0.12)"; c.fillRect(x + 2, y1 - 16, w - 4, 3);
+    const sb = c.createLinearGradient(0, y0, 0, y0 + 30); sb.addColorStop(0, "rgba(0,0,0,0.35)"); sb.addColorStop(1, "rgba(0,0,0,0)"); c.fillStyle = sb; c.fillRect(x + 2, y0, w - 4, 30);
+  }
+  function teclaPreta(c, x, w, on) {
+    const y0 = 1258, y1 = 1405 + (on ? 3 : 0);
+    c.fillStyle = "rgba(0,0,0,0.35)"; c.fillRect(x + 3, y0, w, y1 - y0 + 10);
+    const gr = c.createLinearGradient(x, 0, x + w, 0);
+    if (on) { gr.addColorStop(0, "#c98f00"); gr.addColorStop(0.5, "#ffd23f"); gr.addColorStop(1, "#b07c00"); } else { gr.addColorStop(0, "#202027"); gr.addColorStop(0.5, "#3a3a44"); gr.addColorStop(1, "#111116"); }
+    rrp(c, x, y0, w, y1 - y0, [0, 0, 6, 6]); c.fillStyle = gr; c.fill();
+    c.fillStyle = on ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.22)"; rrp(c, x + w * 0.2, y1 - 26, w * 0.6, 14, 4); c.fill();
+  }
+  function desenharPiano(mus, atual, pulso) {
+    g.drawImage(baseInstr(mus), 0, 0);
+    if (!atual) return;
+    const L = layout, x0 = 76, kw = (884 - x0) / L.brancas.length, m = atual.m;
+    const iB = L.brancas.indexOf(m);
+    if (iB >= 0) { teclaBranca(g, x0 + iB * kw, kw, true);
+      L.brancas.forEach((n, i) => { const p = n + 1; if (Math.abs(i - iB) <= 1 && [1,3,6,8,10].includes(p % 12) && p <= mus.raiz + 28) teclaPreta(g, x0 + i * kw + kw * 0.66, kw * 0.68, false); });
+      brilho(x0 + iB * kw + kw / 2, 1440, 90, `rgba(255,210,63,${0.5 + 0.4 * pulso})`, 1); }
+    else { const iP = L.brancas.indexOf(m - 1); if (iP >= 0) { teclaPreta(g, x0 + iP * kw + kw * 0.66, kw * 0.68, true);
+      brilho(x0 + iP * kw + kw, 1360, 80, `rgba(255,210,63,${0.5 + 0.4 * pulso})`, 1); } }
+  }
+
+  // ===== harpa =====
+  const HP = {base: 1500, x0: 372, x1: 712, n: 22};
+  const pescoco = u => { const a = [318, 1092], b = [470, 1020], c = [610, 1250], d = [735, 1172], v = 1 - u;
+    return [v*v*v*a[0] + 3*v*v*u*b[0] + 3*v*u*u*c[0] + u*u*u*d[0], v*v*v*a[1] + 3*v*v*u*b[1] + 3*v*u*u*c[1] + u*u*u*d[1]]; };
+  const yPescoco = x => { let best = 0, bd = 1e9; for (let k = 0; k <= 80; k++) { const [px] = pescoco(k / 80), d = Math.abs(px - x); if (d < bd) { bd = d; best = k / 80; } } return pescoco(best)[1] + 10; };
+  const yCaixa = x => 1494 - (x - 318) * (334 / 404);
+  const cordaHarpaX = i => HP.x0 + i * (HP.x1 - HP.x0) / (HP.n - 1);
+  function cordaDaHarpa(m, raiz) { const base = raiz - 12; let pos = 0;
+    for (let n = base; n < m; n++) if (MAIOR.includes(((n - raiz) % 12 + 12) % 12)) pos++;
+    return Math.max(0, Math.min(HP.n - 1, pos)); }
+  function baseHarpa(c) {
+    c.save(); c.shadowColor = "rgba(0,0,0,0.55)"; c.shadowBlur = 40; c.shadowOffsetY = 18;
+    c.fillStyle = "#1a0d05"; c.beginPath(); c.ellipse(520, 1505, 300, 22, 0, 0, 7); c.fill(); c.restore();
+    // caixa de ressonância (madeira, mais larga embaixo)
+    const cx = c.createLinearGradient(330, 1500, 760, 1170); cx.addColorStop(0, "#8a4a1f"); cx.addColorStop(0.5, "#c47a3a"); cx.addColorStop(1, "#7a3c15");
+    c.beginPath(); c.moveTo(318, 1500); c.lineTo(450, 1500); c.lineTo(770, 1200); c.lineTo(724, 1166); c.closePath(); c.fillStyle = cx; c.fill();
+    for (let k = 1; k < 6; k++) { const u = k / 6; c.beginPath(); c.arc(318 + 406 * u + 40 * (1 - u), 1500 - 334 * u + 6, 5, 0, 7); c.fillStyle = "rgba(30,12,2,0.55)"; c.fill(); }
+    c.strokeStyle = "rgba(255,230,180,0.45)"; c.lineWidth = 4; c.beginPath(); c.moveTo(320, 1496); c.lineTo(724, 1168); c.stroke();
+    // base
+    const bs = c.createLinearGradient(0, 1488, 0, 1512); bs.addColorStop(0, "#d9a441"); bs.addColorStop(1, "#7a5212");
+    rrp(c, 270, 1486, 150, 22, 8); c.fillStyle = bs; c.fill();
+    // cordas (as vermelhas são dó, as azuis são fá, como numa harpa de verdade)
+    for (let i = 0; i < HP.n; i++) desenharCordaHarpa(c, i, 0, 0, null);
+    // coluna dourada com capitel
+    const col = c.createLinearGradient(296, 0, 340, 0); col.addColorStop(0, "#8a5d12"); col.addColorStop(0.35, "#ffe9a3"); col.addColorStop(0.6, "#d9a441"); col.addColorStop(1, "#6e4a0c");
+    rrp(c, 300, 1100, 34, 392, 10); c.fillStyle = col; c.fill();
+    for (let k = 0; k < 6; k++) { c.fillStyle = "rgba(110,70,8,0.5)"; c.fillRect(300, 1150 + k * 60, 34, 4); }
+    c.beginPath(); c.arc(317, 1088, 30, 0, 7); const cap = c.createRadialGradient(308, 1078, 4, 317, 1088, 30); cap.addColorStop(0, "#fff3c4"); cap.addColorStop(1, "#a8761b"); c.fillStyle = cap; c.fill();
+    // pescoço curvo
+    c.lineCap = "round"; c.strokeStyle = "#6e4a0c"; c.lineWidth = 30; c.beginPath();
+    for (let k = 0; k <= 60; k++) { const [x, y] = pescoco(k / 60); k ? c.lineTo(x, y) : c.moveTo(x, y); } c.stroke();
+    c.strokeStyle = "#d9a441"; c.lineWidth = 22; c.stroke(); c.strokeStyle = "rgba(255,245,200,0.7)"; c.lineWidth = 5;
+    c.beginPath(); for (let k = 0; k <= 60; k++) { const [x, y] = pescoco(k / 60); k ? c.lineTo(x, y - 6) : c.moveTo(x, y - 6); } c.stroke(); c.lineCap = "butt";
+    for (let i = 0; i < HP.n; i++) { const x = cordaHarpaX(i); c.beginPath(); c.arc(x, yPescoco(x) - 2, 4, 0, 7); c.fillStyle = "#fff3c4"; c.fill(); }
+  }
+  function desenharCordaHarpa(c, i, amp, t, cor) {
+    const x = cordaHarpaX(i), y0 = yPescoco(x), y1 = yCaixa(x);
+    const base = i % 7 === 0 ? "#e2483a" : i % 7 === 3 ? "#3a6fe2" : "rgba(250,244,230,0.92)";
+    c.beginPath();
+    for (let y = y0; y <= y1; y += 8) { const env = Math.sin(Math.PI * (y - y0) / (y1 - y0)); const xx = x + amp * env * Math.sin(t * 80 + i); y === y0 ? c.moveTo(xx, y) : c.lineTo(xx, y); }
+    c.lineWidth = i < 7 ? 3.4 : i < 14 ? 2.7 : 2.1; c.strokeStyle = cor || base; c.stroke();
+  }
+  function desenharHarpa(mus, atual, t, pulso) {
+    g.drawImage(baseInstr(mus), 0, 0);
+    if (!atual) return;
+    const i = cordaDaHarpa(atual.m, mus.raiz), x = cordaHarpaX(i);
+    g.save(); g.shadowColor = "rgba(255,210,63,0.95)"; g.shadowBlur = 20; desenharCordaHarpa(g, i, 8 * pulso + 1, t, COR.sol); g.restore();
+    brilho(x, (yPescoco(x) + yCaixa(x)) / 2, 110, `rgba(255,210,63,${0.3 + 0.35 * pulso})`, 1);
+  }
+
+  // ===== gaita (harmônica de boca) =====
+  const GT = {x0: 150, x1: 810, yT: 1215, yB: 1385};
+  const furoX = k => GT.x0 + 60 + k * (GT.x1 - GT.x0 - 120) / 9;
+  function furoDaGaita(m) { return Math.max(0, Math.min(9, Math.round((m - 62) / 28 * 9))); }
+  function baseGaita(c) {
+    const {x0, x1, yT, yB} = GT, ym = (yT + yB) / 2;
+    c.save(); c.shadowColor = "rgba(0,0,0,0.6)"; c.shadowBlur = 40; c.shadowOffsetY = 22; rrp(c, x0, yT, x1 - x0, yB - yT, 26); c.fillStyle = "#111"; c.fill(); c.restore();
+    // pente de madeira no meio
+    const pt = c.createLinearGradient(0, ym - 34, 0, ym + 34); pt.addColorStop(0, "#c98a45"); pt.addColorStop(1, "#7a4a1e");
+    c.fillStyle = pt; c.fillRect(x0 + 10, ym - 34, x1 - x0 - 20, 68);
+    // tampas cromadas de cima e de baixo
+    [[yT, ym - 30], [ym + 30, yB]].forEach(([a, b], k) => {
+      const cr = c.createLinearGradient(0, a, 0, b);
+      if (k === 0) { cr.addColorStop(0, "#ffffff"); cr.addColorStop(0.3, "#c9ccd6"); cr.addColorStop(0.7, "#7d8290"); cr.addColorStop(1, "#c5c9d3"); }
+      else { cr.addColorStop(0, "#c5c9d3"); cr.addColorStop(0.3, "#7d8290"); cr.addColorStop(0.75, "#d7dae2"); cr.addColorStop(1, "#ffffff"); }
+      rrp(c, x0, a, x1 - x0, b - a, k ? [0, 0, 26, 26] : [26, 26, 0, 0]); c.fillStyle = cr; c.fill();
+      c.strokeStyle = "rgba(60,64,76,0.5)"; c.lineWidth = 2; c.stroke();
+      for (let r = 0; r < 3; r++) { c.strokeStyle = "rgba(255,255,255,0.35)"; c.lineWidth = 1.5; const yy = a + 12 + r * 9;
+        c.beginPath(); c.moveTo(x0 + 70, yy); c.bezierCurveTo(x0 + 250, yy - 6, x1 - 250, yy + 6, x1 - 70, yy); c.stroke(); }
+      [x0 + 26, x1 - 26].forEach(px => { c.beginPath(); c.arc(px, (a + b) / 2, 7, 0, 7); c.fillStyle = "#8d919c"; c.fill(); c.strokeStyle = "#ffffff"; c.lineWidth = 1.5; c.stroke(); });
+    });
+    // furos numerados
+    for (let k = 0; k < 10; k++) { const x = furoX(k);
+      rrp(c, x - 18, ym - 22, 36, 44, 8); c.fillStyle = "#1a0d05"; c.fill();
+      const fd = c.createLinearGradient(0, ym - 22, 0, ym + 22); fd.addColorStop(0, "rgba(0,0,0,0.6)"); fd.addColorStop(1, "rgba(80,40,10,0.4)"); c.fillStyle = fd; c.fill();
+      c.font = `700 22px ${FC}`; c.fillStyle = "rgba(30,32,40,0.85)"; c.textAlign = "center"; c.fillText(String(k + 1), x, yT + 32); }
+  }
+  function desenharGaita(mus, atual, t, fase, pulso) {
+    g.drawImage(baseInstr(mus), 0, 0);
+    if (!atual) return;
+    const k = furoDaGaita(atual.m), x = furoX(k), ym = (GT.yT + GT.yB) / 2;
+    brilho(x, ym, 90, `rgba(255,210,63,${0.55 + 0.35 * pulso})`, 1);
+    rrp(g, x - 18, ym - 22, 36, 44, 8); g.fillStyle = COR.sol; g.fill();
+    for (let j = 0; j < 3; j++) { const f = (fase * 1.3 + j / 3) % 1;
+      g.globalAlpha = (1 - f) * 0.8; g.strokeStyle = j % 2 ? COR.rosa : COR.sol; g.lineWidth = 6 - 3 * f;
+      g.beginPath(); g.arc(x, GT.yT - 10, 30 + f * 110, Math.PI * 1.2, Math.PI * 1.8); g.stroke(); }
+    g.globalAlpha = 1;
+  }
+  function rr4(x, y, w, h, r) { g.beginPath(); g.roundRect ? g.roundRect(x, y, w, h, r) : g.rect(x, y, w, h); g.fill(); }
+
+  // ---------- controle ----------
+  let t0 = 0, raf = 0, tocando = false, gravando = null;
+  function ler() {
+    const nome = $("nome").value;
+    const temLetra = [...nome].some(c => { const s = semAcento(c.toUpperCase()); return s >= "A" && s <= "Z"; });
+    if (!temLetra) { aviso("Escreva um nome com pelo menos uma letra."); $("nome").focus(); return null; }
+    const dia = +$("dia").value, mes = +$("mes").value;
+    const maxDia = new Date(2024, mes, 0).getDate();
+    if (dia > maxDia) { aviso(`${MESES[mes - 1][0].toUpperCase() + MESES[mes - 1].slice(1)} só tem ${maxDia} dias. Escolha outro dia.`); $("dia").focus(); return null; }
+    let c;
+    if (modo === "so") { c = compor(nome, dia, mes); c.instrs = [$("instr").value]; }
+    else if (modo === "familia") {
+      const temL = n => [...n].some(ch => { const s = semAcento(ch.toUpperCase()); return s >= "A" && s <= "Z"; });
+      const pessoas = [[nome, $("instr").value]];
+      for (let k = 2; k <= 5; k++) { const n = $("nomeF" + k).value; if (temL(n)) pessoas.push([n, $("instrF" + k).value]); }
+      if (pessoas.length < 3) { aviso("A banda precisa de pelo menos 3 pessoas. Preencha a Pessoa 2 e a Pessoa 3."); $("nomeF" + (pessoas.length + 1)).focus(); return null; }
+      c = comporFamilia(pessoas.map(p => p[0]), dia, mes); c.instrs = pessoas.map(p => p[1]);
+      c.score = sintoniaFamilia(c.pares, c.instrs);
+      c.melhor = c.pares.reduce((a, b) => b.total > a.total ? b : a);
+    }
+    else {
+      const n2 = $("nome2").value;
+      if (![...n2].some(ch => { const s = semAcento(ch.toUpperCase()); return s >= "A" && s <= "Z"; })) { aviso("Escreva o segundo nome também."); $("nome2").focus(); return null; }
+      c = comporDuo(nome, n2, dia, mes); c.instrs = [$("instr").value, $("instr2").value];
+      const bi = bonusInstr(c.instrs[0], c.instrs[1]); c.bonus = bi.pts; c.fraseInstr = bi.frase; c.score = Math.min(99, c.scoreNomes + bi.pts);
+    }
+    c.instr = c.instrs[0]; c.modo = modo; return c;
+  }
+  function quadro() {
+    const t = ac.currentTime - t0;
+    desenhar(t, true);
+    if (t < mus.dur) raf = requestAnimationFrame(quadro);
+    else { tocando = false; botoes(); if (!gravando) aviso("Gostou? Baixe o vídeo e poste no TikTok.", true); }
+  }
+  async function tocar() {
+    const m = ler(); if (!m) return false;
+    audio(); if (ac.state === "suspended") ac.resume();
+    const bks = bancosPara(m.instrs);
+    if (bks.some(b => !b.pcm)) { aviso("Afinando os instrumentos…", true);
+      await Promise.race([Promise.all(bks.map(b => b.iniciar())), new Promise(r => setTimeout(r, 9000))]); }
+    cancelAnimationFrame(raf); pararSom();
+    mus = m; layout = prepararLayout(m);
+    t0 = ac.currentTime + 0.15; agendarTudo(m, t0); tocando = true; botoes(); quadro();
+    if (window.innerWidth <= 820) cv.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center'});
+    return true;
+  }
+  function botoes() { $("tocar").textContent = tocando ? "↺ Tocar de novo" : "▶ Tocar a música"; $("gravar").disabled = !!gravando; }
+
+  $("form").addEventListener("submit", async e => { e.preventDefault(); if (gravando) return; if (await tocar()) aviso(mus.familia ? `Tocando a banda de ${mus.exibs.join(", ")}…` : mus.duo ? `Tocando a música de ${mus.exibs[0]} e ${mus.exibs[1]}…` : `Tocando a música de ${mus.exib}…`, true); });
+  // quais gravações cada combinação precisa (o acompanhamento vem do violão, da harpa ou do piano)
+  function bancosPara(ins) {
+    const proprio = {violao: bancoViolao, piano: bancoPiano, sax: bancoSax, gaita: bancoGaita, harpa: bancoHarpa};
+    const acomp = ins.includes("violao") ? bancoViolao : ins.includes("harpa") ? bancoHarpa : bancoPiano;
+    return [...new Set([...ins.map(i => proprio[i] || bancoViolao), acomp])];
+  }
+  // bônus da dupla de instrumentos (combinações clássicas da música)
+  function bonusInstr(a, b) {
+    const par = [a, b].sort().join("+");
+    if (a === b) return {pts: 3, frase: ({violao: "Dois violões", piano: "Dois pianos", sax: "Dois saxofones", gaita: "Duas gaitas", harpa: "Duas harpas"})[a] + ": vocês tocam em uníssono"};
+    return ({"sax+violao": {pts: 6, frase: "Violão e sax: a dupla da bossa nova"},
+             "gaita+violao": {pts: 6, frase: "Gaita e violão: o som da estrada"},
+             "harpa+violao": {pts: 5, frase: "Harpa e violão: uma serenata"},
+             "harpa+piano": {pts: 5, frase: "Harpa e piano: som de concerto"},
+             "piano+sax": {pts: 5, frase: "Piano e sax: o par clássico do jazz"},
+             "gaita+piano": {pts: 4, frase: "Gaita e piano: blues de bar"},
+             "harpa+sax": {pts: 4, frase: "Harpa e sax: noite romântica"},
+             "piano+violao": {pts: 4, frase: "Violão e piano: harmonia de sobra"},
+             "gaita+sax": {pts: 3, frase: "Gaita e sax: sopro em dobro"},
+             "gaita+harpa": {pts: 3, frase: "Gaita e harpa: encontro inesperado"}})[par] || {pts: 0, frase: ""};
+  }
+  const REL = {
+    amor: {nome2: "Nome do seu amor", inst2: "Instrumento do seu amor", ex: "Léo", frase: "Nossa música", fim: "Vocês combinam", sinal: "♥"},
+    mae: {nome2: "Nome da sua mãe", inst2: "Instrumento da sua mãe", ex: "Rosa", frase: "Te amo, mãe!", fim: "Sintonia de família", sinal: "&"},
+    pai: {nome2: "Nome do seu pai", inst2: "Instrumento do seu pai", ex: "José", frase: "Te amo, pai!", fim: "Sintonia de família", sinal: "&"},
+    avos: {nome2: "Nome da vó ou do vô", inst2: "Instrumento da vó ou do vô", ex: "Lourdes", frase: "Te amo, vó!", fim: "Sintonia de família", sinal: "&"},
+    amigo: {nome2: "Nome do seu amigo", inst2: "Instrumento do amigo", ex: "Bia", frase: "Amizade de verdade", fim: "Amizade afinada", sinal: "&"},
+  };
+  let modo = "amor";
+  function aplicarModo(novo) {
+    modo = novo; if (!gravando && typeof limparVideo === "function") limparVideo();
+    document.querySelectorAll("[data-modo]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.modo === modo)));
+    const fam = modo === "familia", duo = modo !== "so" && !fam;
+    $("blocoDois").hidden = !duo; $("blocoFamilia").hidden = !fam; $("blocoFamilia").style.display = fam ? "grid" : "none";
+    $("dicaData").hidden = modo === "so"; $("dicaInstr").hidden = modo === "so";
+    $("lblNome").textContent = modo === "so" ? "Nome" : "Seu nome";
+    if (duo) { const r = REL[modo]; $("lblNome2").textContent = r.nome2; $("lblInstr2").textContent = r.inst2;
+      $("nome2").placeholder = "Ex.: " + r.ex; $("frase").placeholder = "Ex.: " + r.frase; }
+    else $("frase").placeholder = fam ? "Ex.: Família Silva" : "Ex.: Feliz aniversário!";
+    carregarBancos(); if (!tocando) repintar();
+  }
+  document.querySelectorAll("[data-modo]").forEach(b => b.addEventListener("click", () => aplicarModo(b.dataset.modo)));
+  function carregarBancos() {
+    const ins = modo === "so" ? [$("instr").value] : modo === "familia" ? [$("instr").value, ...[2, 3, 4, 5].map(k => $("instrF" + k).value)] : [$("instr").value, $("instr2").value];
+    bancosPara(ins).forEach(b => b.iniciar()); }
+  ["instr", "instr2", "instrF2", "instrF3", "instrF4", "instrF5"].forEach(id => $(id).addEventListener("change", carregarBancos));
+  ["nome", "nome2", "dia", "mes", "frase", "instr", "instr2", "nomeF2", "nomeF3", "nomeF4", "nomeF5", "instrF2", "instrF3", "instrF4", "instrF5"].forEach(id => $(id).addEventListener("input", () => { if (!gravando) limparVideo(); if (!tocando) repintar(); }));
+  function repintar() { const m = ler(); if (!m) return; mus = m; layout = prepararLayout(m); desenhar(0, false); aviso("Toque em ▶ para ouvir."); }
+
+  // ---------- baixar o vídeo ----------
+  const podeGravar = typeof MediaRecorder !== "undefined" && !!cv.captureStream;
+  if (!podeGravar) { $("gravar").hidden = true; }
+
+  function tipoVideo() {
+    const ops = [["video/mp4;codecs=avc1.42E01E,mp4a.40.2","mp4"],["video/mp4","mp4"],["video/webm;codecs=vp9,opus","webm"],["video/webm","webm"]];
+    for (const [t, e] of ops) if (MediaRecorder.isTypeSupported(t)) return [t, e];
+    return ["", "webm"];
+  }
+  let ultimoVideo = null;
+  function baixarPeloNavegador(blob, nome) {
+    try { const url = URL.createObjectURL(blob), a = document.createElement("a");
+      a.href = url; a.download = nome; a.hidden = true; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 60000); return true; }
+    catch (e) { return false; }
+  }
+  function podeMandar() {
+    try { return !!(ultimoVideo && navigator.canShare && navigator.canShare({files: [ultimoVideo]})); } catch (e) { return false; }
+  }
+  // mudou nome, data, instrumento ou modo: o vídeo antigo não vale mais
+  function limparVideo() {
+    ultimoVideo = null; $("mandar").hidden = true;
+    $("gravar").classList.remove("feito"); $("gravar").textContent = "Baixar o vídeo";
+    $("mandar").classList.remove("feito"); $("mandar").textContent = "Mandar o vídeo";
+  }
+  $("mandar").addEventListener("click", async () => {
+    if (!podeMandar()) { aviso("Este aparelho não deixa mandar daqui. Abra os downloads e mande o vídeo pelo WhatsApp ou pelo TikTok."); return; }
+    try { await navigator.share({files: [ultimoVideo], title: "Música do Nome", text: "Faça a sua na Música do Nome!"});
+      $("mandar").classList.add("feito"); $("mandar").textContent = "✓ Vídeo mandado"; aviso("Vídeo mandado!", true); }
+    catch (e) { if (e && e.name === "AbortError") return;
+      aviso("Não deu para mandar daqui. Abra os downloads e mande o vídeo pelo WhatsApp ou pelo TikTok."); }
+  });
+  $("gravar").addEventListener("click", async () => {
+    if (gravando) return;
+    limparVideo();
+    if (!(await tocar())) return;
+    const [tipo, ext] = tipoVideo();
+    const fluxo = new MediaStream([...cv.captureStream(30).getVideoTracks(), ...gravDest.stream.getAudioTracks()]);
+    let rec; try { rec = new MediaRecorder(fluxo, tipo ? {mimeType: tipo, videoBitsPerSecond: 6000000} : {}); }
+    catch (e) { aviso("Este aparelho não deixa gravar vídeo aqui. Use a gravação de tela do celular enquanto a música toca."); return; }
+    const pedacos = []; rec.ondataavailable = e => { if (e.data.size) pedacos.push(e.data); };
+    gravando = rec; botoes();
+    const nomeArq = (mus.familia ? "banda-de-" : "musica-de-") + semAcento(mus.duo || mus.familia ? mus.exibs.join(" e ") : mus.exib).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + "." + ext;
+    const durMs = (mus.dur + 0.4) * 1000;
+    const ini = performance.now();
+    const tick = setInterval(() => { const f = Math.max(0, Math.ceil((durMs - (performance.now() - ini)) / 1000)); aviso(`Gravando o vídeo… faltam ${f} segundos. Deixe a página aberta.`, true); }, 500);
+    rec.onstop = async () => {
+      clearInterval(tick); gravando = null; botoes();
+      const blob = new Blob(pedacos, {type: tipo || "video/webm"});
+      if (!blob.size) { aviso("O vídeo saiu vazio. Toque em Baixar o vídeo de novo."); return; }
+      ultimoVideo = new File([blob], nomeArq, {type: blob.type});
+      const baixou = baixarPeloNavegador(blob, nomeArq);   // download normal do navegador
+      if (baixou) { $("gravar").classList.add("feito"); $("gravar").textContent = "✓ Vídeo baixado";
+        aviso(podeMandar() ? "Vídeo baixado. Toque em Mandar o vídeo para enviar no WhatsApp ou no TikTok." : "Vídeo baixado. Agora é só postar!", true); }
+      else aviso("Não deu para baixar o vídeo neste aparelho. Use a gravação de tela do celular.");
+      if (podeMandar()) $("mandar").hidden = false;
+      if (window.innerWidth <= 820) $("gravar").scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center'});
+    };
+    rec.start(500);
+    setTimeout(() => { try { rec.stop(); } catch (e) {} }, durMs);
+  });
+
+  // primeira imagem (exemplo) assim que as fontes chegarem
+  const pronto = () => { const m = ler(); if (!m) return; mus = m; layout = prepararLayout(mus); desenhar(0, false); };
+  $("dia").value = 12; $("mes").value = 6;
+  aplicarModo("amor");
+  pronto();
+  if (document.fonts && document.fonts.load) Promise.all([document.fonts.load(`800 100px "Bricolage Grotesque"`), document.fonts.load(`700 40px Figtree`)]).then(() => { if (!tocando) pronto(); }).catch(() => {});
+})();
+</script>
+
+</body></html>
